@@ -1,0 +1,40 @@
+﻿import type { ArtistContent } from '../content/artist';
+import { bookingHref } from '../content/artist';
+import { ArtistPhoto, ButtonLink, Container, Link, ProfileLinks, SectionHeading } from './ui';
+
+export function Hero({ artist }: { artist: ArtistContent }) {
+  return <section id="home" tabIndex={-1} aria-labelledby="artist-name"><Container className={`hero ${artist.heroImage ? '' : 'without-image'}`}>
+    <div className="hero-copy">{artist.tagline && <p className="eyebrow">{artist.tagline}</p>}
+      <h1 id="artist-name">{artist.stageName}<span className="dot">.</span></h1>
+      <p className="intro">{artist.introduction}</p>
+      {artist.isDraft && <p className="draft">Temporary artist name and introduction — approval pending.</p>}
+      <ButtonLink href="#latest">Listen Now <span aria-hidden="true">↗</span></ButtonLink>
+    </div>
+    {artist.heroImage && <ArtistPhoto image={artist.heroImage} hero />}
+    <div className="hero-bottom"><span>Music, in its own words.</span><Link href="#music">Explore the music <span aria-hidden="true">↓</span></Link></div>
+  </Container></section>;
+}
+
+export function About({ artist }: { artist: ArtistContent }) {
+  return <section id="about" className="about section" tabIndex={-1} aria-labelledby="about-title"><Container className="about-grid">
+    <div><SectionHeading id="about-title" eyebrow="03 / Behind the sound">{artist.aboutHeading}</SectionHeading>{artist.aboutImage && <ArtistPhoto image={artist.aboutImage} />}</div>
+    <div className="biography">{artist.isDraft && <p className="draft">Temporary biography — approved artist copy pending.</p>}
+      {artist.shortBio && <p className="bio-lead">{artist.shortBio}</p>}
+      {artist.biography.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+    </div>
+  </Container></section>;
+}
+
+export function Contact({ artist }: { artist: ArtistContent }) {
+  const emailHref = bookingHref(artist.bookingEmail);
+  return <section id="contact" className="section" tabIndex={-1} aria-labelledby="contact-title"><Container>
+    <div className="contact-grid"><SectionHeading id="contact-title" eyebrow="04 / Get in touch">{artist.contactHeading}</SectionHeading>
+      <div className="contact-details"><p className="eyebrow">{artist.bookingLabel}</p>
+        {emailHref ? <Link className="booking-email" href={emailHref}>{artist.bookingEmail?.trim()}</Link> : <p className="draft">Booking contact details will be available soon.</p>}
+        <ProfileLinks profiles={artist.socialProfiles} label="Social profiles" />
+        <ProfileLinks profiles={artist.streamingProfiles} label="Streaming profiles" />
+      </div>
+    </div>
+  </Container></section>;
+}
+
