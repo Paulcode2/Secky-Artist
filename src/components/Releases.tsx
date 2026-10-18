@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { releases, type Release } from '../content/releases';
+import type { ProfileLink } from '../content/artist';
 import { isUpcoming, listeningAction, selectReleases, todayInLagos, validDate } from '../lib/releases';
-import { ButtonLink, Container, Link, SectionHeading } from './ui';
+import { ButtonLink, Container, Link, ProfileLinks, SectionHeading } from './ui';
 
 export function ReleaseArtwork({ release, prominent = false }: { release: Release; prominent?: boolean }) {
   const [failedSource, setFailedSource] = useState<string>();
@@ -40,7 +41,7 @@ function ReleaseMeta({ release, today }: { release: Release; today: string }) {
     : 'Release date not supplied'}</p>;
 }
 
-export function ReleaseSections({ entries = releases }: { entries?: Release[] }) {
+export function ReleaseSections({ entries = releases, profiles = [] }: { entries?: Release[]; profiles?: ProfileLink[] }) {
   const { featured, catalogue } = selectReleases(entries);
   const [today, setToday] = useState(todayInLagos);
   useEffect(() => {
@@ -54,10 +55,11 @@ export function ReleaseSections({ entries = releases }: { entries?: Release[] })
       {featured ? <><ReleaseArtwork key={`${featured.id}-${featured.artwork?.src}`} release={featured} prominent /><div className="feature-copy">
         <SectionHeading id="latest-title" eyebrow="01 / Featured release">{featured.title}</SectionHeading>
         <ReleaseMeta release={featured} today={today} /><ListeningControl release={featured} today={today} />
-      </div></> : <><SectionHeading id="latest-title" eyebrow="01 / Featured release">Featured release</SectionHeading><p className="draft">No featured release has been announced yet.</p></>}
+      </div></> : <><SectionHeading id="latest-title" eyebrow="01 / Featured release">Explore the music</SectionHeading><Link href="#music">Browse releases and listening platforms <span aria-hidden="true">↓</span></Link></>}
     </Container></section>
     <section id="music" className="section" tabIndex={-1} aria-labelledby="music-title"><Container>
       <SectionHeading id="music-title" eyebrow="02 / The catalogue">Music<span className="dot">.</span></SectionHeading>
+      {profiles.length > 0 && <div className="music-profiles"><p>Explore the full artist catalogue</p><ProfileLinks profiles={profiles} label="Artist streaming profiles" /></div>}
       {catalogue.length ? <div className="release-grid">{catalogue.map(release => <article className="release" key={release.id}>
         <ReleaseArtwork release={release} /><ReleaseMeta release={release} today={today} />
         <h3>{release.title}</h3><ListeningControl release={release} today={today} />

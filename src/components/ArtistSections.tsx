@@ -2,13 +2,15 @@
 import { bookingHref } from '../content/artist';
 import { ArtistPhoto, ButtonLink, Container, Link, ProfileLinks, SectionHeading } from './ui';
 
-export function Hero({ artist }: { artist: ArtistContent }) {
+export function Hero({ artist, listeningTarget = '#music' }: { artist: ArtistContent; listeningTarget?: '#latest' | '#music' }) {
   return <section id="home" tabIndex={-1} aria-labelledby="artist-name"><Container className={`hero ${artist.heroImage ? '' : 'without-image'}`}>
     <div className="hero-copy">{artist.tagline && <p className="eyebrow">{artist.tagline}</p>}
       <h1 id="artist-name">{artist.stageName}<span className="dot">.</span></h1>
       <p className="intro">{artist.introduction}</p>
+      {artist.supportingText && <p className="hero-support">{artist.supportingText}</p>}
       {artist.isDraft && <p className="draft">Temporary artist name and introduction — approval pending.</p>}
-      <ButtonLink href="#latest">Listen Now <span aria-hidden="true">↗</span></ButtonLink>
+      <ButtonLink href={listeningTarget}>Listen Now <span aria-hidden="true">↗</span></ButtonLink>
+      <ProfileLinks profiles={artist.streamingProfiles} label="Listen to the artist" />
     </div>
     {artist.heroImage && <ArtistPhoto image={artist.heroImage} hero />}
     <div className="hero-bottom"><span>Music, in its own words.</span><Link href="#music">Explore the music <span aria-hidden="true">↓</span></Link></div>

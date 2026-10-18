@@ -4,7 +4,7 @@ Updated: 18 October 2026.
 
 ## Current status
 
-Phases 1–4 implementation complete. The application now supports typed releases, a featured release, responsive catalogue and external listening flows. The original `preview/` design study is preserved. The client catalogue remains empty pending supplied content and destinations; honest empty states are displayed. No hosting registration or deployment has been created.
+Phases 1–4 and the requested content integration are complete. SECKY's supplied identity, hero copy, biographies and two streaming profiles are integrated, together with four platform-identified singles. No release is featured; photography, covers and contact details are pending. The original `preview/` study is archived and separate from the application. Phase 5 has not begun. No hosting registration or deployment has been created.
 
 ## Completed in the planning phase
 
@@ -66,20 +66,41 @@ Phases 1–4 implementation complete. The application now supports typed release
 - Port 5173 was already serving the application; reused it and left that pre-existing server running. Only the dedicated test browser was closed. No dependencies changed.
 - Physical touch devices, screen readers and real client destinations remain untested.
 
+## Content integration after Phase 4
+
+- Read the scope, checklist, central content models, components and progress record before modifying the existing application.
+- Integrated SECKY branding, exact hero headline/supporting text, short biography and full two-paragraph biography. Preserved `Success Enwerem Chimezie KingsleY`; confirmation of the final capital Y is recorded.
+- Treated award and FIFA-related wording as client-provided copy, without expanding claims or adding logos. Supporting evidence remains requested in the checklist.
+- Added exact supplied Spotify and Apple Music GB profiles in hero, Music, Contact and footer. With no selected feature, hero Listen Now targets Music. Release destinations remain distinct from artist-profile URLs.
+- Inspected available assets: only old stock photographs/screenshots were present. Removed stock imports from the current app; hero/About now omit photography. No platform artwork was reused without permission.
+- Integrated four singles using indexed/cached platform metadata: My Name, Celebration in the air, Letter to my wife (Redux) and Black. None is featured. No claim that the partial catalogue is complete. Other differing or unconfirmed entries are deferred.
+- Set the exact requested title and meta description. No prior social-sharing title/description fields existed. No domain, canonical URL, sharing image or favicon was invented; noindex remains pending launch review.
+- Booking email, management details and social handles remain absent. No fake contact action was added.
+- Added `content-sources.md`, updated the content checklist, README and release-maintenance instructions. Sources and per-destination access limits are recorded there.
+
+### Content integration checks
+
+- `npm run build` passed TypeScript, eight release tests and Vite production output. The old stock image assets are no longer emitted in `dist/`.
+- Existing foundation/browser checks passed at 320, 390, 768, 1440 and 1920px. Exact supplied profile hrefs in hero/Music/footer, hero routing, title, preserved name spelling, absence of sample copy and absence of stock photos passed additional assertions.
+- Confirmed release actions never use artist-profile URLs; release chooser/direct-link, keyboard, Escape/focus and emulated-touch fixtures still pass. No runtime exceptions in the successful run.
+- Captured and visually reviewed mobile/desktop layouts in `docs/review/content-390.png` and `content-1440.png`. Titles wrap and biography paragraphs have readable spacing with no horizontal overflow. No photo cropping could be checked because no authorised image exists.
+- Spotify and Apple catalogue evidence was inspected through browsing. Several direct pages returned no body/cache misses; these are explicitly recorded rather than reported as live-link verification. No playback/login tests were performed.
+- Reused the pre-existing development server on port 5173 and left it running. The dedicated test browser closed after checks. No dependency changes or Phase 5 work performed.
+
 ## Remaining production work
 
 | Stage | Status | Completion condition |
 | --- | --- | --- |
-| Content collection | Awaiting client inputs | Required identity, copy, imagery, brand direction, release information, official links and public email approved. |
+| Content collection | Identity/copy/profiles integrated | Awaiting photography, covers, contacts, social links, full catalogue and confirmations in the checklist. |
 | Technical setup | Application tooling complete | Hosting selection remains pending. |
-| Content preparation | Not started | Approved data entered; images optimised; required fields and destinations verified. |
+| Content preparation | Partial catalogue integrated | Artwork, photos and remaining destination/claim checks pending. |
 | Interface implementation | Core and release functionality complete | Approved content integration and review remain. |
 | Verification | Foundation and release checks complete | Final content, external links, screen-reader operation, cross-browser layout and delivery checked. |
 | Client review and delivery | Not started | Review feedback resolved and delivery undertaken in a later phase. |
 
 ## Assumptions and unresolved inputs
 
-Assume an English-language static promotional page with developer-managed updates and external listening destinations. The artist's identity, short introduction, both biographies, approved photos, brand preferences, complete release details/artwork, official social/streaming URLs and public booking email are missing. Logo and supporting photography are optional. The framework is now selected; hosting and domain remain undecided. A release-led launch requires at least one approved release and working listening link.
+The English-language page remains developer-managed. Identity, hero copy, biographies and Spotify/Apple Music profiles are supplied; four releases have platform-backed metadata. Approved photos, brand approval, complete catalogue/artwork, social handles, public booking email, copyright and featured selection remain outstanding. Confirm the full-name capitalisation and supply evidence for the award/FIFA wording. Hosting and domain remain undecided. Live destination access and final client approval remain launch requirements.
 
 See `content-checklist.md` for collection requirements and `project-scope.md` for the proposed content files and update workflow.
 

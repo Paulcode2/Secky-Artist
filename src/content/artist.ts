@@ -1,6 +1,3 @@
-import portrait from '../../preview/assets/temporary-portrait.jpg';
-import atmosphere from '../../preview/assets/temporary-performance.jpg';
-
 export interface ArtistImage {
   src: string;
   alt: string;
@@ -15,8 +12,12 @@ export interface ProfileLink {
 export interface ArtistContent {
   isDraft: boolean;
   stageName: string;
+  fullName: string;
+  pageTitle: string;
+  metaDescription: string;
   tagline?: string;
   introduction: string;
+  supportingText?: string;
   heroImage?: ArtistImage;
   logo?: ArtistImage;
   aboutHeading: string;
@@ -31,35 +32,30 @@ export interface ArtistContent {
   streamingProfiles: ProfileLink[];
 }
 
-// Temporary content only. Replace with approved client material before launch.
-// Leave unavailable email, images and links undefined/empty; never invent values.
+// Identity and biography are client-provided copy, not independently verified claims.
+// Preserve the supplied full-name spelling pending confirmation of the final capital Y.
+// No approved photography, booking address or social handles supplied.
 export const artist: ArtistContent = {
-  isDraft: true,
-  stageName: 'Artist Name',
-  tagline: 'Independent sound. Individual spirit.',
-  introduction: 'A sound of your own. A world to get lost in.',
-  heroImage: {
-    src: portrait,
-    alt: 'Temporary stock photograph of a person carrying a guitar; not the client artist',
-    width: 1600, height: 1600,
-    caption: 'Portrait direction / temporary stock image',
-  },
-  aboutHeading: 'A voice. A whole world.',
-  shortBio: 'Every artist has a story. This is where yours begins.',
+  isDraft: false,
+  stageName: 'SECKY',
+  fullName: 'Success Enwerem Chimezie KingsleY',
+  pageTitle: 'SECKY | Official Website',
+  metaDescription: 'Discover SECKY, a Nigerian Afrobeat and pop artist based in the United Kingdom. Explore his music and listen on Spotify and Apple Music.',
+  introduction: 'Nigerian roots. Global rhythms.',
+  supportingText: 'A Nigerian Afrobeat and pop artist based in the United Kingdom, SECKY brings vibrant rhythms, heartfelt storytelling, and uplifting energy to his music.',
+  aboutHeading: 'About SECKY',
+  shortBio: 'SECKY is a Nigerian Afrobeat and pop artist based in the United Kingdom. Blending African influences with global rhythms, he creates vibrant, uplifting music that celebrates creativity, identity, and unity.',
   biography: [
-    'The opening paragraph will introduce the artist in their own words: the sound, the perspective, and what they want a listener to feel. This is temporary biography placement copy, awaiting approval.',
-    'A second paragraph can explore the creative process and the music’s context. Include only details supplied and approved by the artist. Longer biographies flow naturally; no text is cropped.',
+    'Secky (Success Enwerem Chimezie KingsleY) is a Nigerian Afrobeat and pop artist based in the United Kingdom. His stage name, SECKY, is derived from his initials. Known for his vibrant, uplifting sound, Secky blends African influences with global rhythms, delivering heartfelt storytelling and music that celebrates creativity, identity and unity.',
+    'A winner of the Top Naija Music Awards, Secky has also achieved a notable milestone by contributing to ‘Celebration in the Air’ featuring FIFA Sound, with the song appearing on FIFA’s official Spotify and Apple Music pages. This achievement reflects his growing presence in the international music scene as he continues to share his sound with audiences worldwide.',
   ],
-  aboutImage: {
-    src: atmosphere,
-    alt: 'Temporary atmosphere photograph of a microphone against blurred stage lights',
-    width: 1600, height: 1067,
-    caption: 'Atmosphere study / temporary stock image',
-  },
   bookingLabel: 'Bookings & enquiries',
-  contactHeading: 'Let’s make something matter.',
+  contactHeading: 'Contact',
   socialProfiles: [],
-  streamingProfiles: [],
+  streamingProfiles: [
+    { label: 'Spotify', url: 'https://open.spotify.com/artist/2gyg88Hy443exTHje87bKk' },
+    { label: 'Apple Music', url: 'https://music.apple.com/gb/artist/secky/1756161815' },
+  ],
 };
 
 export function validProfiles(profiles: ProfileLink[]): ProfileLink[] {

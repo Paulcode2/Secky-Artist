@@ -1,5 +1,6 @@
 // Run against the development server and a dedicated Edge CDP session (README).
 import assert from 'node:assert/strict';
+import { mkdir, writeFile } from 'node:fs/promises';
 import { checkReleases } from './browser-release-checks.mjs';
 const response = await fetch('http://127.0.0.1:5173/');
 assert.equal(response.status, 200);
@@ -37,6 +38,12 @@ try {
     await call('Emulation.setDeviceMetricsOverride', { width, height: 1000, deviceScaleFactor: 1, mobile: width < 640 }); await settle();
     const info = await evaluate(`({ width: innerWidth, scrollWidth: document.documentElement.scrollWidth, images: [...document.images].every(i => i.complete && i.naturalWidth), anchors: [...document.querySelectorAll('a[href^="#"]')].every(a => a.hash.length > 1 && document.getElementById(a.hash.slice(1))) })`);
     assert.ok(info.scrollWidth <= width); assert.ok(info.images); assert.ok(info.anchors); layouts.push(info);
+    if (process.env.CAPTURE_CONTENT === '1' && [390, 1440].includes(width)) {
+      await evaluate('window.scrollTo(0,0)'); await settle();
+      const shot = await call('Page.captureScreenshot', { format: 'png', captureBeyondViewport: true });
+      await mkdir('docs/review', { recursive: true });
+      await writeFile(`docs/review/content-${width}.png`, Buffer.from(shot.data, 'base64'));
+    }
   }
   await call('Emulation.setDeviceMetricsOverride', { width: 320, height: 900, deviceScaleFactor: 1, mobile: true }); await settle();
   assert.equal(await evaluate('getComputedStyle(document.querySelector(".navigation")).display'), 'none');
@@ -55,7 +62,17 @@ try {
   assert.equal(await evaluate('document.querySelector(".menu-toggle").getAttribute("aria-expanded")'), 'false');
   assert.ok(await evaluate('document.querySelector("#about").getBoundingClientRect().top >= document.querySelector("header").getBoundingClientRect().bottom'));
   assert.equal(await evaluate('getComputedStyle(document.documentElement).scrollBehavior'), 'auto');
-  assert.equal(await evaluate('document.querySelectorAll("a[href^=mailto], .profile-links").length'), 0);
+  assert.equal(await evaluate('document.querySelectorAll("a[href^=mailto]").length'), 0);
+  const suppliedProfiles = ['https://open.spotify.com/artist/2gyg88Hy443exTHje87bKk', 'https://music.apple.com/gb/artist/secky/1756161815'];
+  for (const section of ['.hero', '#music', 'footer']) {
+    assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('${section} .profile-links a'), a => a.href)`), suppliedProfiles);
+  }
+  assert.equal(await evaluate('document.title'), 'SECKY | Official Website');
+  assert.equal(await evaluate('document.querySelector(".hero .button").hash'), '#music');
+  assert.equal(await evaluate('document.querySelectorAll(".hero img, #about img").length'), 0);
+  assert.equal(await evaluate(`Array.from(document.querySelectorAll('.release a')).some(a => ${JSON.stringify(suppliedProfiles)}.includes(a.href))`), false);
+  assert.equal(await evaluate('/Artist Name|temporary biography|sample release|Tours|Videos/i.test(document.body.innerText)'), false);
+  assert.equal(await evaluate('document.querySelector("#about").textContent.includes("Success Enwerem Chimezie KingsleY")'), true);
   const contentChecks = await evaluate(`(async () => {
     const { bookingHref, validProfiles } = await import('/src/content/artist.ts');
     return { email: bookingHref(' bookings@example.test '), badEmail: bookingHref('bad?address'), profiles: validProfiles([{label:'Test',url:'https://example.test/artist'},{label:'Missing',url:''},{label:'Invalid',url:'#'}]).length };

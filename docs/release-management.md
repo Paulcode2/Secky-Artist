@@ -16,7 +16,7 @@ The application reads `src/content/releases.ts`. The old `preview/index.html` is
 | `platforms` | Array of supplied `{ name, url }` release-specific HTTPS destinations; use `[]` if none exist. |
 | `preSaveUrl` | Optional confirmed HTTPS pre-save destination, separate from ordinary listening links. |
 
-The catalogue is deliberately empty until approved client content arrives. There are no invented releases or destinations. Supported platforms are data-driven: only those actually supplied for the release appear, including services such as Spotify, Apple Music, Audiomack, Boomplay or YouTube Music. Do not substitute artist-profile links for release destinations.
+Four platform-identified singles are now integrated; see `content-sources.md` for dates, destination evidence and access limits. None is featured and no artwork reuse has been authorised. Supported platforms are data-driven: only verified release-specific destinations appear. Do not substitute artist-profile links for release destinations or copy artwork merely because it is accessible online.
 
 ## Adding and maintaining releases
 
@@ -34,7 +34,7 @@ This model supersedes the planned release JSON/featured-ID structure. The featur
 
 For releases not dated in the future: a valid smart link wins; otherwise one valid unique platform links directly; otherwise multiple platforms produce an inline chooser; otherwise an unavailable message appears without an active release listening action. Invalid or empty URLs/names are excluded at runtime. Duplicate destinations are collapsed. The content test reports invalid authored values before building. URL syntax checks do not establish that a destination exists or belongs to the artist.
 
-All external links are real anchors opening in the same tab. There are no new-tab links requiring new-tab rel attributes, players or autoplay. The hero Listen Now remains an in-page link to the featured section, including its empty/unavailable state.
+All external links are real anchors opening in the same tab. There are no new-tab links requiring new-tab rel attributes, players or autoplay. Without an explicitly featured release with an available listening action, hero Listen Now targets Music and its supplied artist-profile choices. When a usable feature is supplied it targets the featured section instead.
 
 The chooser uses native `details`/`summary`. Enter/Space or a touch tap expands it, Tab reaches platform links, and Escape closes it and returns focus to the summary. Activating the summary again also closes it. It is an inline disclosure, not a modal: focus stays in document order and is not trapped.
 
@@ -44,10 +44,10 @@ Future-dated releases show “Coming” with the date. Only an explicit valid `p
 
 | Content | Destinations | Result |
 | --- | --- | --- |
-| Client releases and pre-save pages | None supplied | No actual client URLs available to verify. |
+| Four integrated releases | Five release-specific Spotify/Apple Music destinations | Metadata checked against indexed/cached platform sources. Some direct fetches unavailable; see the per-URL register in `content-sources.md`. No pre-save URLs supplied. |
 | Isolated test fixtures | Reserved `example.test` URLs | Intentionally not opened; these are not music destinations and never appear in site content. |
 
-Unverified client URL list: empty because none have been supplied, not because client links have passed verification. Awaiting all titles/types, dates where known, approved artwork/alternatives, featured selection and release-specific smart/platform/pre-save URLs. Record supplied URLs, check dates, results and access restrictions here when available. Do not borrow the reference artist's releases or destinations.
+The authoritative current verification register is `content-sources.md`: it distinguishes supplied artist profiles, accessible cached pages, indexed metadata and failed direct fetches. Live availability and regional playback need rechecking before launch. Approved artwork/alternatives, featured selection, canonical catalogue confirmation and additional release-specific destinations remain pending. No pre-save or smart links have been inferred.
 
 ## Verification
 
