@@ -34,7 +34,7 @@ This model supersedes the planned release JSON/featured-ID structure. The featur
 
 For releases not dated in the future: a valid smart link wins; otherwise one valid unique platform links directly; otherwise multiple platforms produce an inline chooser; otherwise an unavailable message appears without an active release listening action. Invalid or empty URLs/names are excluded at runtime. Duplicate destinations are collapsed. The content test reports invalid authored values before building. URL syntax checks do not establish that a destination exists or belongs to the artist.
 
-All external links are real anchors opening in the same tab. There are no new-tab links requiring new-tab rel attributes, players or autoplay. Without an explicitly featured release with an available listening action, hero Listen Now targets Music and its supplied artist-profile choices. When a usable feature is supplied it targets the featured section instead.
+All external website links are real anchors opening in a new tab with rel="noopener noreferrer". Internal navigation and mailto links retain their normal behaviour. There are no players or autoplay. Without an explicitly featured release with an available listening action, hero Listen Now targets Music and its supplied artist-profile choices. When a usable feature is supplied it targets the featured section instead.
 
 The chooser uses native `details`/`summary`. Enter/Space or a touch tap expands it, Tab reaches platform links, and Escape closes it and returns focus to the summary. Activating the summary again also closes it. It is an inline disclosure, not a modal: focus stays in document order and is not trapped.
 

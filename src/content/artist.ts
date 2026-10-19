@@ -75,6 +75,7 @@ export const artist: ArtistContent = {
     'A winner of the Top Naija Music Awards, Secky has also achieved a notable milestone by contributing to ‘Celebration in the Air’ featuring FIFA Sound, with the song appearing on FIFA’s official Spotify and Apple Music pages. This achievement reflects his growing presence in the international music scene as he continues to share his sound with audiences worldwide.',
   ],
   bookingLabel: 'Bookings & enquiries',
+  bookingEmail: 'Info@seckyworldwide.com',
   contactHeading: 'Contact',
   socialProfiles: [],
   streamingProfiles: [

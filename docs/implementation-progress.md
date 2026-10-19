@@ -138,3 +138,15 @@ The bullets above describe the earlier planning-only milestone. `preview/index.h
 - Fixed the dark featured-section hover contrast and removed the unsupported booking availability promise.
 - Production build and 8/8 tests passed. Expanded semantics, contrast, keyboard-focus and existing browser checks passed against both development and production at five widths. Refreshed and reviewed mobile/desktop captures.
 - Full results, exact verification limits, client-review decisions and launch blockers are in `qa-report.md`. No deployment or new features introduced. Earlier milestone notes below/above remain historical records.
+
+## Artwork and About update - 19 October 2026
+
+All four official covers are now integrated at the explicit user request. Apple catalogue lookup matched collection IDs 6811251027, 1888957592, 1891233342 and 1843594841 to artist ID 1756161815. Local 800px square images have descriptive alternatives and lazy loading. See docs/release-artwork-sources.json for provenance. This supersedes earlier missing-artwork statements; featured selection remains pending.
+
+About now uses a balanced portrait-and-text layout, smaller heading and readable 16px biography. The repeated short introduction was removed from this section; the full approved biography is unchanged. Mobile stacks naturally.
+
+Production build, TypeScript, all eight tests and browser checks at 320/390/768/1440/1920px passed. Four loaded covers, no artwork fallbacks, navigation, listening fixtures and keyboard/touch checks passed with no runtime exceptions. Mobile/desktop screenshots were refreshed and visually reviewed. Deployment remains on hold.
+
+## Booking email and link behaviour - 19 October 2026
+
+Added the supplied public booking address Info@seckyworldwide.com as a mailto link. This supersedes previous missing-booking-email notes; actual mailbox delivery has not been tested. All external HTTP(S) links now open a new tab with noopener noreferrer through the shared Link component, including profiles, release destinations and chooser options. Internal anchors and mailto links retain their normal behaviour. Deployment remains on hold.

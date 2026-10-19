@@ -1,6 +1,6 @@
 # Artist website
 
-SECKY's identity, biographies, supplied hero/About photos, Spotify/Apple Music profiles and four platform-identified releases are integrated after Phase 4. No release is featured yet; covers and contact details are still missing. Release-candidate QA is complete; see docs/qa-report.md for launch blockers. No backend or account features are included.
+SECKY's identity, biographies, supplied hero/About photos, Spotify/Apple Music profiles and four platform-identified releases are integrated after Phase 4. No release is featured yet; official covers and the public booking email are integrated. Release-candidate QA is complete; see docs/qa-report.md for launch blockers. No backend or account features are included.
 
 ## Setup and development
 
@@ -38,7 +38,7 @@ Dependencies are pinned in `package.json` and `package-lock.json`: React/React D
 
 Edit `src/content/artist.ts`, not layout components. Change stage name, tagline, introduction, headings, short biography and biography paragraph array there. The page title follows the stage name. Add approved photography under an appropriate asset directory, import it and update the image's `src`, dimensions, `alt` and optional caption. Set an optional image/logo to `undefined` to omit it; the hero expands to one column without a photograph.
 
-Set `bookingEmail` to the verified public address. The contact component renders it as a `mailto:` link; blank or malformed values render an honest unavailable message. There is no form or sending service. Social/streaming arrays contain `{ label, url }` entries. Only nonempty labels with valid HTTPS URLs are displayed. They open in the same tab and have visible text labels; decorative arrows are hidden from assistive technology. Empty arrays produce no placeholder links or empty link headings. Manually verify the actual artist destination; syntax validation does not establish ownership.
+Set `bookingEmail` to the verified public address. The contact component renders it as a `mailto:` link; blank or malformed values render an honest unavailable message. There is no form or sending service. Social/streaming arrays contain `{ label, url }` entries. Only nonempty labels with valid HTTPS URLs are displayed. They open in a new tab with noopener noreferrer and have visible text labels; decorative arrows are hidden from assistive technology. Empty arrays produce no placeholder links or empty link headings. Manually verify the actual artist destination; syntax validation does not establish ownership.
 
 Current artist copy is client-supplied and `isDraft` is false, removing obsolete sample-copy notices. This does not mean launch-ready: noindex remains in place, and release artwork, booking/social details and copyright attribution are pending. Spotify and Apple Music profile links use the exact supplied URLs. Test `.test` URLs stay inside isolated fixtures. Set `copyrightOwner` only when confirmed. The full biography is supplied copy; supporting award/FIFA evidence and the final capital Y in the full name are tracked in the checklist.
 
@@ -70,7 +70,7 @@ The helper closes its dedicated browser on completion. It checks 320, 390, 768, 
 
 ## Outstanding content and later work
 
-Remaining inputs: all cover artwork, featured selection, canonical full catalogue, booking/management email, social handles, copyright attribution, brand approval and claim/name confirmations. The identity, hero copy, biographies and two artist profile URLs have been supplied and integrated. Catalogue sources and limited-access URLs are recorded in `docs/content-sources.md`. Responsive image optimisation and targeted production QA are complete. No deployment, broad cross-browser audit, physical-device testing or screen-reader audit has been performed. See docs/qa-report.md.
+Remaining inputs: featured selection, canonical full catalogue, social handles, copyright attribution, brand approval and claim/name confirmations. The identity, hero copy, biographies and two artist profile URLs have been supplied and integrated. Catalogue sources and limited-access URLs are recorded in `docs/content-sources.md`. Responsive image optimisation and targeted production QA are complete. No deployment, broad cross-browser audit, physical-device testing or screen-reader audit has been performed. See docs/qa-report.md.
 
 The production build also runs eight release logic/content tests. The existing browser helper now includes isolated release fixtures via `scripts/browser-release-checks.mjs` and `scripts/browser-fixtures.ts`; neither is imported into the production application. It tests all listening branches, artwork failure, feature exclusion, responsive catalogue columns, keyboard and emulated touch without navigating to fictitious destinations.
 

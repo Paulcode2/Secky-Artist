@@ -2,3 +2,9 @@ node_modules/
 dist/
 .qa-browser/
 *.log
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+artifacts/

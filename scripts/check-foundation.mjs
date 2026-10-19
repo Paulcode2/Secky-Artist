@@ -66,7 +66,9 @@ try {
   assert.equal(await evaluate('document.querySelector(".menu-toggle").getAttribute("aria-expanded")'), 'false');
   assert.ok(await evaluate('document.querySelector("#about").getBoundingClientRect().top >= document.querySelector("header").getBoundingClientRect().bottom'));
   assert.equal(await evaluate('getComputedStyle(document.documentElement).scrollBehavior'), 'auto');
-  assert.equal(await evaluate('document.querySelectorAll("a[href^=mailto]").length'), 0);
+  assert.equal(await evaluate('document.querySelector(".booking-email").getAttribute("href")'), 'mailto:Info@seckyworldwide.com');
+  assert.equal(await evaluate('document.querySelector(".booking-email").target'), '');
+  assert.equal(await evaluate(`Array.from(document.querySelectorAll('a[href^="https://"]')).every(a => a.target === '_blank' && a.relList.contains('noopener') && a.relList.contains('noreferrer'))`), true);
   const suppliedProfiles = ['https://open.spotify.com/artist/2gyg88Hy443exTHje87bKk', 'https://music.apple.com/gb/artist/secky/1756161815'];
   for (const section of ['.hero', '#music', 'footer']) {
     assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('${section} .profile-links a'), a => a.href)`), suppliedProfiles);

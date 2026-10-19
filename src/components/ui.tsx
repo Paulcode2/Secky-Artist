@@ -12,7 +12,10 @@ export function Button({ className = '', type = 'button', ...props }: ComponentP
   return <button type={type} className={`button ${className}`} {...props} />;
 }
 export function Link({ className = '', ...props }: AnchorHTMLAttributes<HTMLAnchorElement>) {
-  return <a className={className} {...props} />;
+  const external = /^(https?:)?\/\//i.test(props.href ?? '');
+  return <a className={className} {...props}
+    target={external ? '_blank' : props.target}
+    rel={external ? `${props.rel ?? ''} noopener noreferrer`.trim() : props.rel} />;
 }
 export function ButtonLink(props: AnchorHTMLAttributes<HTMLAnchorElement>) {
   return <Link {...props} className={`button ${props.className ?? ''}`} />;

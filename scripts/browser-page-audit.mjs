@@ -24,7 +24,9 @@ export async function auditPage({ evaluate, key }) {
   assert.ok(result.headings.every((h,i,a)=>i===0||h.level<=a[i-1].level+1));
   assert.deepEqual(result.landmarks,{main:1,header:1,footer:1});
   assert.equal(result.unnamedActions,0);
-  assert.ok(result.images.every(i=>i.alt && i.source.includes('.webp')));
+  assert.ok(result.images.every(i=>i.alt && i.source));
+  assert.equal(await evaluate('document.querySelectorAll(".release-artwork img").length'), 4);
+  assert.equal(await evaluate('document.querySelectorAll(".release-artwork .artwork-fallback").length'), 0);
   assert.ok(result.contrast.every(c=>c.ratio>=4.5));
   assert.ok(result.sharing && result.favicon && result.noindex);
   await evaluate('document.querySelector(".skip").focus()');

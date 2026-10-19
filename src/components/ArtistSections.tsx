@@ -19,9 +19,10 @@ export function Hero({ artist, listeningTarget = '#music' }: { artist: ArtistCon
 
 export function About({ artist }: { artist: ArtistContent }) {
   return <section id="about" className="about section" tabIndex={-1} aria-labelledby="about-title"><Container className="about-grid">
-    <div><SectionHeading id="about-title" eyebrow="03 / Behind the sound">{artist.aboutHeading}</SectionHeading>{artist.aboutImage && <ArtistPhoto image={artist.aboutImage} />}</div>
-    <div className="biography">{artist.isDraft && <p className="draft">Temporary biography — approved artist copy pending.</p>}
-      {artist.shortBio && <p className="bio-lead">{artist.shortBio}</p>}
+    {artist.aboutImage && <ArtistPhoto image={artist.aboutImage} />}
+    <div className="biography">
+      <SectionHeading id="about-title" eyebrow="03 / Behind the sound">{artist.aboutHeading}</SectionHeading>
+      {artist.isDraft && <p className="draft">Temporary biography — approved artist copy pending.</p>}
       {artist.biography.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
     </div>
   </Container></section>;

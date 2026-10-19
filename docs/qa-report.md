@@ -71,3 +71,15 @@ Rechecked through browsing on 18 October during this phase. Tool responses can b
 No Lighthouse/axe score, Core Web Vitals field data, throttled performance benchmark, screen-reader session, physical-device test, Safari/Firefox test or social-platform debugger test was run. No full accessibility certification is claimed. Follow-up cross-browser/screen-reader review is recommended before public delivery.
 
 For development fixtures, follow README's dedicated Edge setup and run `node scripts/check-foundation.mjs`. For production, start a fresh dedicated browser and run `$env:QA_URL='http://127.0.0.1:4173/'; node scripts/check-foundation.mjs` in PowerShell. The helper closes its dedicated browser. Set `CAPTURE_CONTENT=1` to refresh captures. Clear `QA_URL` before running development fixtures. Image exports can be reproduced using `node scripts/prepare-images.mjs` with the dev server and dedicated browser running.
+
+## Artwork and About update - 19 October 2026
+
+All four official covers are now integrated at the explicit user request. Apple catalogue lookup matched collection IDs 6811251027, 1888957592, 1891233342 and 1843594841 to artist ID 1756161815. Local 800px square images have descriptive alternatives and lazy loading. See docs/release-artwork-sources.json for provenance. This supersedes earlier missing-artwork statements; featured selection remains pending.
+
+About now uses a balanced portrait-and-text layout, smaller heading and readable 16px biography. The repeated short introduction was removed from this section; the full approved biography is unchanged. Mobile stacks naturally.
+
+Production build, TypeScript, all eight tests and browser checks at 320/390/768/1440/1920px passed. Four loaded covers, no artwork fallbacks, navigation, listening fixtures and keyboard/touch checks passed with no runtime exceptions. Mobile/desktop screenshots were refreshed and visually reviewed. Deployment remains on hold.
+
+## Booking email and link behaviour - 19 October 2026
+
+Added the supplied public booking address Info@seckyworldwide.com as a mailto link. This supersedes previous missing-booking-email notes; actual mailbox delivery has not been tested. All external HTTP(S) links now open a new tab with noopener noreferrer through the shared Link component, including profiles, release destinations and chooser options. Internal anchors and mailto links retain their normal behaviour. Deployment remains on hold.

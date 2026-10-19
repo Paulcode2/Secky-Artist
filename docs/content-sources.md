@@ -44,3 +44,11 @@ Still needed: covers for the four entries, optional logo, approved social-sharin
 ## Validation scope
 
 Production build, eight release tests, existing foundation/browser checks and content-specific assertions passed. Checked exact supplied profile hrefs in hero/Music/footer, hero routing to Music, no profile URL reused for a release, absence of sample copy and stock photographs, full-name spelling, and title. Mobile/desktop text wrapping and biography spacing were visually reviewed in `docs/review/content-390.png` and `content-1440.png`; automated widths also covered 320, 768 and 1920px. After photo integration, refreshed mobile/desktop captures were visually checked for face visibility and proportions. The repeated brief verification reran the build and browser checks successfully, including both loaded artist images; it did not repeat live destination checks. No physical-device, screen-reader, final performance or broad QA audit was performed; Phase 5 has not begun.
+
+## Artwork and About update - 19 October 2026
+
+All four official covers are now integrated at the explicit user request. Apple catalogue lookup matched collection IDs 6811251027, 1888957592, 1891233342 and 1843594841 to artist ID 1756161815. Local 800px square images have descriptive alternatives and lazy loading. See docs/release-artwork-sources.json for provenance. This supersedes earlier missing-artwork statements; featured selection remains pending.
+
+About now uses a balanced portrait-and-text layout, smaller heading and readable 16px biography. The repeated short introduction was removed from this section; the full approved biography is unchanged. Mobile stacks naturally.
+
+Production build, TypeScript, all eight tests and browser checks at 320/390/768/1440/1920px passed. Four loaded covers, no artwork fallbacks, navigation, listening fixtures and keyboard/touch checks passed with no runtime exceptions. Mobile/desktop screenshots were refreshed and visually reviewed. Deployment remains on hold.
