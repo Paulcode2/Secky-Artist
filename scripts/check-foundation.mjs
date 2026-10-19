@@ -82,6 +82,7 @@ try {
   }
   assert.equal(await evaluate('document.title'), 'SECKY | Official Website');
   assert.equal(await evaluate('document.querySelector("header .wordmark").textContent'), 'ArUsi’');
+  assert.equal(await evaluate('document.querySelector("footer .wordmark").textContent.trim()'), 'Seckyworldwide.com');
   assert.equal(await evaluate(`Array.from(document.querySelectorAll('.release')).every(card => {
     const links = Array.from(card.querySelectorAll('.release-listening-links a'));
     return links.length === 2 && links[0].getAttribute('aria-label').startsWith('Listen on Spotify:') && links[1].getAttribute('aria-label').startsWith('Listen on Apple Music:') && links.every(a => a.querySelector('.platform-logo'));
