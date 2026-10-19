@@ -1,6 +1,6 @@
 # Artist website
 
-SECKY's identity, client-supplied biographies, Spotify/Apple Music profiles and four platform-identified releases are integrated after Phase 4. No release is featured yet; approved photography, covers and contact details are still missing. Phase 5 has not begun. No backend or account features are included.
+SECKY's identity, biographies, supplied hero/About photos, Spotify/Apple Music profiles and four platform-identified releases are integrated after Phase 4. No release is featured yet; covers and contact details are still missing. Release-candidate QA is complete; see docs/qa-report.md for launch blockers. No backend or account features are included.
 
 ## Setup and development
 
@@ -40,11 +40,11 @@ Edit `src/content/artist.ts`, not layout components. Change stage name, tagline,
 
 Set `bookingEmail` to the verified public address. The contact component renders it as a `mailto:` link; blank or malformed values render an honest unavailable message. There is no form or sending service. Social/streaming arrays contain `{ label, url }` entries. Only nonempty labels with valid HTTPS URLs are displayed. They open in the same tab and have visible text labels; decorative arrows are hidden from assistive technology. Empty arrays produce no placeholder links or empty link headings. Manually verify the actual artist destination; syntax validation does not establish ownership.
 
-Current artist copy is client-supplied and `isDraft` is false, removing obsolete sample-copy notices. This does not mean launch-ready: noindex remains in place, and photography, artwork, booking/social details and copyright attribution are pending. Spotify and Apple Music profile links use the exact supplied URLs. Test `.test` URLs stay inside isolated fixtures. Set `copyrightOwner` only when confirmed. The full biography is supplied copy; supporting award/FIFA evidence and the final capital Y in the full name are tracked in the checklist.
+Current artist copy is client-supplied and `isDraft` is false, removing obsolete sample-copy notices. This does not mean launch-ready: noindex remains in place, and release artwork, booking/social details and copyright attribution are pending. Spotify and Apple Music profile links use the exact supplied URLs. Test `.test` URLs stay inside isolated fixtures. Set `copyrightOwner` only when confirmed. The full biography is supplied copy; supporting award/FIFA evidence and the final capital Y in the full name are tracked in the checklist.
 
 Artist content uses a typed file in place of the initial JSON proposal. Release data is maintained separately in `src/content/releases.ts`; see [release management](docs/release-management.md) for adding, editing, featuring, removing and verifying releases. `src/lib/releases.ts` handles selection, dates and listening decisions; `src/components/Releases.tsx` renders the artwork, grid and inline chooser. With no featured release selected, hero Listen Now targets `#music`, which offers both artist profiles. An explicitly featured release with an available listening/pre-save action switches that anchor to `#latest`.
 
-Maintain `pageTitle` and `metaDescription` in the artist content and the matching initial metadata in root `index.html`. The requested title is `SECKY | Official Website`. No canonical URL, production domain, favicon or social-sharing image was supplied; none has been fabricated. No social-sharing title/description tags previously existed. See [content sources](docs/content-sources.md) before changing release metadata or achievement wording.
+Maintain `pageTitle` and `metaDescription` in the artist content and the matching initial metadata in root `index.html`. The requested title is `SECKY | Official Website`. Initial HTML includes Open Graph and Twitter title/description tags and a locally derived S-dot SVG favicon. Final domain, canonical URL, sitemap, public robots configuration and approved sharing image remain pending; retain noindex until launch approval. See [content sources](docs/content-sources.md) before changing release metadata or achievement wording.
 
 ## Navigation and accessibility
 
@@ -70,6 +70,7 @@ The helper closes its dedicated browser on completion. It checks 320, 390, 768, 
 
 ## Outstanding content and later work
 
-Remaining inputs: approved artist photography, all cover artwork, featured selection, canonical full catalogue, booking/management email, social handles, copyright attribution, brand approval and claim/name confirmations. The identity, hero copy, biographies and two artist profile URLs have been supplied and integrated. Catalogue sources and limited-access URLs are recorded in `docs/content-sources.md`. No deployment, final optimisation, broad cross-browser audit, physical-device testing or screen-reader audit has been performed.
+Remaining inputs: all cover artwork, featured selection, canonical full catalogue, booking/management email, social handles, copyright attribution, brand approval and claim/name confirmations. The identity, hero copy, biographies and two artist profile URLs have been supplied and integrated. Catalogue sources and limited-access URLs are recorded in `docs/content-sources.md`. Responsive image optimisation and targeted production QA are complete. No deployment, broad cross-browser audit, physical-device testing or screen-reader audit has been performed. See docs/qa-report.md.
 
 The production build also runs eight release logic/content tests. The existing browser helper now includes isolated release fixtures via `scripts/browser-release-checks.mjs` and `scripts/browser-fixtures.ts`; neither is imported into the production application. It tests all listening branches, artwork failure, feature exclusion, responsive catalogue columns, keyboard and emulated touch without navigating to fictitious destinations.
+

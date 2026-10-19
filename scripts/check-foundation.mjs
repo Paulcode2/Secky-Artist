@@ -2,7 +2,9 @@
 import assert from 'node:assert/strict';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { checkReleases } from './browser-release-checks.mjs';
-const response = await fetch('http://127.0.0.1:5173/');
+import { auditPage } from './browser-page-audit.mjs';
+const siteUrl = process.env.QA_URL || 'http://127.0.0.1:5173/';
+const response = await fetch(siteUrl);
 assert.equal(response.status, 200);
 const pages = await (await fetch('http://127.0.0.1:9223/json')).json();
 const ws = new WebSocket(pages.find(p => p.type === 'page').webSocketDebuggerUrl);
@@ -29,13 +31,15 @@ async function key(key, code, virtualKey) {
 }
 try {
   await call('Page.enable'); await call('Runtime.enable');
-  await call('Page.navigate', { url: 'http://127.0.0.1:5173/' });
+  await call('Page.navigate', { url: siteUrl });
   for (let i = 0; i < 50; i++) { if (await evaluate('!!document.querySelector(".hero")')) break; await new Promise(r => setTimeout(r, 100)); }
   await evaluate('Promise.all([...document.images].map(i => { i.loading = "eager"; return i.decode().catch(() => {}); }))');
   await call('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
   const layouts = [];
   for (const width of [320, 390, 768, 1440, 1920]) {
     await call('Emulation.setDeviceMetricsOverride', { width, height: 1000, deviceScaleFactor: 1, mobile: width < 640 }); await settle();
+    await evaluate('Promise.all([...document.images].map(i => i.decode().catch(() => {})))');
+    await settle();
     const info = await evaluate(`({ width: innerWidth, scrollWidth: document.documentElement.scrollWidth, images: [...document.images].every(i => i.complete && i.naturalWidth), anchors: [...document.querySelectorAll('a[href^="#"]')].every(a => a.hash.length > 1 && document.getElementById(a.hash.slice(1))) })`);
     assert.ok(info.scrollWidth <= width); assert.ok(info.images); assert.ok(info.anchors); layouts.push(info);
     if (process.env.CAPTURE_CONTENT === '1' && [390, 1440].includes(width)) {
@@ -69,10 +73,14 @@ try {
   }
   assert.equal(await evaluate('document.title'), 'SECKY | Official Website');
   assert.equal(await evaluate('document.querySelector(".hero .button").hash'), '#music');
-  assert.equal(await evaluate('document.querySelectorAll(".hero img, #about img").length'), 0);
+  assert.equal(await evaluate('document.querySelectorAll(".hero img, #about img").length'), 2);
+  assert.equal(await evaluate(`Array.from(document.querySelectorAll('.hero img, #about img')).every(i => i.complete && i.naturalWidth > 0 && i.alt.includes('SECKY') && !i.src.includes('temporary'))`), true);
   assert.equal(await evaluate(`Array.from(document.querySelectorAll('.release a')).some(a => ${JSON.stringify(suppliedProfiles)}.includes(a.href))`), false);
   assert.equal(await evaluate('/Artist Name|temporary biography|sample release|Tours|Videos/i.test(document.body.innerText)'), false);
   assert.equal(await evaluate('document.querySelector("#about").textContent.includes("Success Enwerem Chimezie KingsleY")'), true);
+  const pageAudit = await auditPage({ evaluate, key });
+  console.log(JSON.stringify({pageAudit},null,2));
+  if (!process.env.QA_URL) {
   const contentChecks = await evaluate(`(async () => {
     const { bookingHref, validProfiles } = await import('/src/content/artist.ts');
     return { email: bookingHref(' bookings@example.test '), badEmail: bookingHref('bad?address'), profiles: validProfiles([{label:'Test',url:'https://example.test/artist'},{label:'Missing',url:''},{label:'Invalid',url:'#'}]).length };
@@ -90,6 +98,8 @@ try {
   })()`);
   assert.equal(rendering, true);
   const releaseChecks = await checkReleases({ evaluate, call, key, settle });
+  console.log(JSON.stringify({releaseChecks}));
+  }
   assert.deepEqual(errors, []);
-  console.log(JSON.stringify({ status: 'passed', layouts, mobileKeyboard: 'Enter, Tab, Escape, selection and focus passed', stickyAnchor: 'passed', reducedMotion: 'passed', missingLinks: 'omitted', contactFixtures: 'passed', releaseChecks, runtimeErrors: errors }, null, 2));
+  console.log(JSON.stringify({ status: 'passed', siteUrl, layouts, mobileKeyboard: 'Enter, Tab, Escape, selection and focus passed', stickyAnchor: 'passed', reducedMotion: 'passed', missingLinks: 'omitted', fixtures: process.env.QA_URL ? 'skipped on production; run on dev' : 'passed', runtimeErrors: errors }, null, 2));
 } finally { await call('Browser.close'); ws.close(); }

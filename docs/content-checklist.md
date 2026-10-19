@@ -1,6 +1,6 @@
 # Client content checklist
 
-Updated: 18 October 2026, content integration after Phase 4. SECKY's supplied identity, biographies, hero copy and two streaming profiles are integrated. Required means needed for launch. See `content-sources.md` for source URLs, partial catalogue verification and access limitations.
+Updated: 19 October 2026, release-candidate review. SECKY's supplied identity, biographies, hero copy and two streaming profiles are integrated. Required means needed for launch. See `content-sources.md` for source URLs, partial catalogue verification and access limitations.
 
 ## Required content
 
@@ -10,8 +10,8 @@ Updated: 18 October 2026, content integration after Phase 4. SECKY's supplied id
 | Integrated | Short introduction | “Nigerian roots. Global rhythms.” plus the exact supplied supporting paragraph. |
 | Integrated | Short biography | Exact supplied copy, used as the compact About introduction. |
 | Integrated; evidence pending | Full biography | Both supplied paragraphs retained verbatim. Treat award/FIFA statements as client-provided copy; see confirmations below. |
-| Missing | Hero photograph | High-resolution approved original, usage permission, required photographer credit, and preferred subject/crop. Confirm mobile crop suitability. |
-| Missing | Brand direction | Existing brand colours and typography preferences, or agreement that the developer may propose them for approval. Include font licensing constraints. No fixed palette or typeface is assumed. |
+| Integrated | Hero photograph | Client-supplied monochrome studio portrait (`15.47.06.jpeg`), with face-safe responsive framing. |
+| Missing | Brand direction | Existing brand colours and typography preferences, or agreement that the developer may propose them for approval. Include font licensing constraints. The proposed ivory/ink/rust palette and Georgia/Arial typography await approval. |
 | Missing | Featured release selection | Identify the release to lead the page and whether it is already released or forthcoming. |
 | Partially integrated | Release catalogue | Four singles with platform-sourced titles, dates and release links. Complete canonical catalogue, final client review and approved artwork still needed. See `content-sources.md`. |
 | Missing | Social profile URLs | Exact official profile destinations to include; explicitly confirm if none should appear. |
@@ -40,25 +40,25 @@ The developer will assign stable IDs, create accurate image descriptions from su
 | Status | Item | Use or fallback |
 | --- | --- | --- |
 | Not supplied | Logo | Supply SVG or high-resolution transparent artwork and usage rules if available; otherwise use the stage name as text. |
-| Not supplied | Other approved artist photographs | About portrait or supporting imagery; omit extra imagery if unavailable. Include permissions and credits. |
+| Integrated | Other artist photographs | Client supplied 21 photos; `seky1.jpeg` selected for About. Remaining options are not loaded into the page. |
 | Not supplied | Separate mobile hero crop | Useful where the original cannot crop well; developer can prepare a crop from the approved original. |
 | Not supplied | Additional listening destinations | Extra platforms beyond the one required per release. Only show verified supplied links. |
 | Not supplied | Release descriptions or credits | Short approved context where useful; no fabricated collaborators, reviews or achievements. |
 | Not supplied | Management/contact label | Approved name or organisation and role, only if intended for public display. The public email is sufficient. |
 | Not supplied | Brand guide and licensed font files | Existing guidelines can direct styling; otherwise agree on an original visual direction and suitable fonts. |
-| Not supplied | Favicon and social sharing image | Can be derived later from approved branding/assets, subject to approval. |
+| Review / pending | Favicon and social sharing image | S-dot SVG favicon implemented for review. Sharing image and final domain still pending. |
 
 ## Collection and approval process
 
-Client confirmations before Phase 5/launch:
+Client confirmations before launch:
 
 - Confirm the unusual final capitalisation in **Success Enwerem Chimezie KingsleY**; it has not been normalised.
 - Supply the Top Naija Music Awards year/category and official evidence. This claim is client copy, not independently verified.
 - Supply links supporting the precise claim about appearing on FIFA's official Spotify and Apple Music pages. Release collaborator metadata does not independently establish official endorsement or account ownership. No ambassador/partner/performer/award claim has been added.
 - Choose the featured release; confirm the partial catalogue and resolve differing platform titles/types for other entries before adding them.
-- Provide authorised SECKY photographs and cover artwork with usage/credit details. Existing stock photos were removed from the application and must not be represented as the artist.
+- Artist photographs are now supplied and integrated. Supply release cover artwork and any required photographer credit wording. Existing stock photos remain excluded from the application.
 - Supply a public booking/management email, official social handles if any, copyright attribution and brand approval.
-- Confirm live availability of the supplied Apple Music GB profile and cached/indexed release destinations. No production domain, canonical URL, sharing image or favicon has been invented.
+- Confirm live availability of the supplied Apple Music GB profile and cached/indexed release destinations. Final domain, canonical URL and sharing image remain pending. Review the derived S-dot favicon and see qa-report.md for launch requirements.
 
 Supply copy and release data in a document or spreadsheet with files clearly matched to the artist/release. Provide original assets rather than screenshots where possible. Record which items are approved, require edits, or are intentionally unavailable. The developer then transfers approved values into the structured files proposed in `project-scope.md`.
 

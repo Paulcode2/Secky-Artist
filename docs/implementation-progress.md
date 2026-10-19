@@ -1,10 +1,10 @@
 # Implementation progress
 
-Updated: 18 October 2026.
+Updated: 19 October 2026.
 
 ## Current status
 
-Phases 1–4 and the requested content integration are complete. SECKY's supplied identity, hero copy, biographies and two streaming profiles are integrated, together with four platform-identified singles. No release is featured; photography, covers and contact details are pending. The original `preview/` study is archived and separate from the application. Phase 5 has not begun. No hosting registration or deployment has been created.
+Phases 1–4 and content integration are complete. SECKY's identity, biographies, streaming profiles, four platform-identified singles and supplied hero/About photographs are integrated. No release is featured; cover artwork and contact details remain pending. The original `preview/` study is archived separately. Release-candidate QA and image/metadata preparation are complete; see qa-report.md for measured results and unresolved launch blockers. Ready for client review, not public launch. Nothing has been deployed.
 
 ## Completed in the planning phase
 
@@ -87,20 +87,35 @@ Phases 1–4 and the requested content integration are complete. SECKY's supplie
 - Spotify and Apple catalogue evidence was inspected through browsing. Several direct pages returned no body/cache misses; these are explicitly recorded rather than reported as live-link verification. No playback/login tests were performed.
 - Reused the pre-existing development server on port 5173 and left it running. The dedicated test browser closed after checks. No dependency changes or Phase 5 work performed.
 
+## Supplied photograph follow-up
+
+- Reviewed the 21 client-provided photos. Selected the monochrome studio portrait (`WhatsApp Image 2026-10-15 at 15.47.06.jpeg`) for the hero and `seky1.jpeg` for About.
+- Copied those two originals into `src/assets/artist/`, preserving source files in Downloads. Source sizes: 1047×1143 / 152,908 bytes and 1080×720 / 116,917 bytes. No recompression, retouching or generated imagery.
+- Added descriptive alt text. Hero uses a 4:5 CSS frame with a 50%/20% focal position; About retains the source 3:2 proportions and colour. Hero loads eagerly; About loads lazily. Other photos are not downloaded by page visitors.
+- Production build and all eight release tests passed. Browser checks passed at 320, 390, 768, 1440 and 1920px, including image loading, links, navigation and release interactions. Updated mobile/desktop captures were visually reviewed: both faces remain visible with no stretching or overflow.
+- Updated checklist and image provenance. This completes the supplied-photo integration only; release covers, selected feature and contact details are still outstanding.
+
+## Repeated brief verification
+
+- Read the resubmitted content brief and compared it with the existing content integration. Approved copy, profile URLs, metadata and supplied photographs were already present; no duplicate content or interface rebuild was needed.
+- Reran the production build: strict TypeScript, all eight release tests and Vite output passed.
+- Reran the browser checks at 320, 390, 768, 1440 and 1920px: images loaded, anchors resolved and no horizontal overflow occurred. Mobile keyboard navigation, sticky-anchor clearance, reduced motion, release actions, chooser keyboard/focus/touch and contact fixtures passed with no runtime errors.
+- Updated the source register to distinguish current photographs from the historical pre-photo state. No new external-link availability or playback checks were performed. Phase 5 has not begun.
+
 ## Remaining production work
 
 | Stage | Status | Completion condition |
 | --- | --- | --- |
-| Content collection | Identity/copy/profiles integrated | Awaiting photography, covers, contacts, social links, full catalogue and confirmations in the checklist. |
+| Content collection | Identity/copy/profiles/photos integrated | Awaiting covers, contacts, social links, full catalogue and confirmations in the checklist. |
 | Technical setup | Application tooling complete | Hosting selection remains pending. |
-| Content preparation | Partial catalogue integrated | Artwork, photos and remaining destination/claim checks pending. |
+| Content preparation | Partial catalogue and portraits integrated | Cover artwork and remaining destination/claim checks pending. |
 | Interface implementation | Core and release functionality complete | Approved content integration and review remain. |
 | Verification | Foundation and release checks complete | Final content, external links, screen-reader operation, cross-browser layout and delivery checked. |
 | Client review and delivery | Not started | Review feedback resolved and delivery undertaken in a later phase. |
 
 ## Assumptions and unresolved inputs
 
-The English-language page remains developer-managed. Identity, hero copy, biographies and Spotify/Apple Music profiles are supplied; four releases have platform-backed metadata. Approved photos, brand approval, complete catalogue/artwork, social handles, public booking email, copyright and featured selection remain outstanding. Confirm the full-name capitalisation and supply evidence for the award/FIFA wording. Hosting and domain remain undecided. Live destination access and final client approval remain launch requirements.
+The English-language page remains developer-managed. Identity, hero copy, biographies and Spotify/Apple Music profiles are supplied; four releases have platform-backed metadata. Brand approval, complete catalogue/artwork, social handles, public booking email, copyright and featured selection remain outstanding. Confirm the full-name capitalisation and supply evidence for the award/FIFA wording. Hosting and domain remain undecided. Live destination access and final client approval remain launch requirements.
 
 See `content-checklist.md` for collection requirements and `project-scope.md` for the proposed content files and update workflow.
 
@@ -112,4 +127,14 @@ See `content-checklist.md` for collection requirements and `project-scope.md` fo
 - Release and link maintenance described, including validation and later rebuild/deployment.
 - Only the three requested planning documents added; no implementation work performed.
 
-The bullets above describe the earlier planning-only milestone. The subsequent visual phase adds a runnable static mockup and targeted browser checks, not a production application. Open `preview/index.html` directly in a browser; see `design-direction.md` for screenshots, verification limits and assets still needed.
+The bullets above describe the earlier planning-only milestone. `preview/index.html` is the archived visual study. Use the root Vite application for the current SECKY website; see `README.md` for setup and development instructions and `design-direction.md` for the original design decisions.
+
+
+## Release-candidate phase — 19 October 2026
+
+- Audited every visible section, supplied content, profile links and release destinations; access restrictions and missing client inputs are listed in `qa-report.md`.
+- Added responsive WebP exports with JPEG fallback, source sizing and explicit dimensions; retained eager/high-priority hero and lazy About loading.
+- Added initial-HTML Open Graph/Twitter text metadata and an SVG favicon derived from the existing identity. Domain-dependent metadata and publication configuration remain blocked by the missing final domain.
+- Fixed the dark featured-section hover contrast and removed the unsupported booking availability promise.
+- Production build and 8/8 tests passed. Expanded semantics, contrast, keyboard-focus and existing browser checks passed against both development and production at five widths. Refreshed and reviewed mobile/desktop captures.
+- Full results, exact verification limits, client-review decisions and launch blockers are in `qa-report.md`. No deployment or new features introduced. Earlier milestone notes below/above remain historical records.

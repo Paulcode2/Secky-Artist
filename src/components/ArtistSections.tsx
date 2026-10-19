@@ -32,7 +32,7 @@ export function Contact({ artist }: { artist: ArtistContent }) {
   return <section id="contact" className="section" tabIndex={-1} aria-labelledby="contact-title"><Container>
     <div className="contact-grid"><SectionHeading id="contact-title" eyebrow="04 / Get in touch">{artist.contactHeading}</SectionHeading>
       <div className="contact-details"><p className="eyebrow">{artist.bookingLabel}</p>
-        {emailHref ? <Link className="booking-email" href={emailHref}>{artist.bookingEmail?.trim()}</Link> : <p className="draft">Booking contact details will be available soon.</p>}
+        {emailHref ? <Link className="booking-email" href={emailHref}>{artist.bookingEmail?.trim()}</Link> : <p className="draft">Booking enquiries are currently unavailable.</p>}
         <ProfileLinks profiles={artist.socialProfiles} label="Social profiles" />
         <ProfileLinks profiles={artist.streamingProfiles} label="Streaming profiles" />
       </div>

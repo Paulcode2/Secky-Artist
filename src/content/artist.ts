@@ -1,9 +1,20 @@
+import studioPortrait from '../assets/artist/secky-studio.jpeg';
+import outdoorPortrait from '../assets/artist/secky-outdoor.jpeg';
+import studio480 from '../assets/artist/secky-studio-480.webp';
+import studio800 from '../assets/artist/secky-studio-800.webp';
+import studioFull from '../assets/artist/secky-studio-1047.webp';
+import outdoor480 from '../assets/artist/secky-outdoor-480.webp';
+import outdoor800 from '../assets/artist/secky-outdoor-800.webp';
+import outdoorFull from '../assets/artist/secky-outdoor-1080.webp';
+
 export interface ArtistImage {
   src: string;
   alt: string;
   width: number;
   height: number;
   caption?: string;
+  webpSrcSet?: string;
+  sizes?: string;
 }
 export interface ProfileLink {
   label: string;
@@ -34,7 +45,7 @@ export interface ArtistContent {
 
 // Identity and biography are client-provided copy, not independently verified claims.
 // Preserve the supplied full-name spelling pending confirmation of the final capital Y.
-// No approved photography, booking address or social handles supplied.
+// Photographs supplied by the client; booking address and social handles remain absent.
 export const artist: ArtistContent = {
   isDraft: false,
   stageName: 'SECKY',
@@ -43,6 +54,20 @@ export const artist: ArtistContent = {
   metaDescription: 'Discover SECKY, a Nigerian Afrobeat and pop artist based in the United Kingdom. Explore his music and listen on Spotify and Apple Music.',
   introduction: 'Nigerian roots. Global rhythms.',
   supportingText: 'A Nigerian Afrobeat and pop artist based in the United Kingdom, SECKY brings vibrant rhythms, heartfelt storytelling, and uplifting energy to his music.',
+  heroImage: {
+    src: studioPortrait,
+    webpSrcSet: `${studio480} 480w, ${studio800} 800w, ${studioFull} 1047w`,
+    sizes: '(max-width: 639px) 90vw, (max-width: 1440px) 44vw, 624px',
+    alt: 'Black-and-white studio portrait of SECKY in a patterned suit, looking to the side',
+    width: 1047, height: 1143,
+  },
+  aboutImage: {
+    src: outdoorPortrait,
+    webpSrcSet: `${outdoor480} 480w, ${outdoor800} 800w, ${outdoorFull} 1080w`,
+    sizes: '(max-width: 639px) 90vw, (max-width: 1440px) 41vw, 600px',
+    alt: 'SECKY beside a brick wall outdoors, wearing a white shirt and colourful neck scarf',
+    width: 1080, height: 720,
+  },
   aboutHeading: 'About SECKY',
   shortBio: 'SECKY is a Nigerian Afrobeat and pop artist based in the United Kingdom. Blending African influences with global rhythms, he creates vibrant, uplifting music that celebrates creativity, identity, and unity.',
   biography: [

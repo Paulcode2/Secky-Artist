@@ -19,8 +19,11 @@ export function ButtonLink(props: AnchorHTMLAttributes<HTMLAnchorElement>) {
 }
 export function ArtistPhoto({ image, hero = false }: { image: ArtistImage; hero?: boolean }) {
   return <figure className={hero ? 'hero-image' : 'about-image'}>
-    <img src={image.src} alt={image.alt} width={image.width} height={image.height}
-      loading={hero ? 'eager' : 'lazy'} fetchPriority={hero ? 'high' : 'auto'} />
+    <picture>
+      {image.webpSrcSet && <source type="image/webp" srcSet={image.webpSrcSet} sizes={image.sizes} />}
+      <img src={image.src} alt={image.alt} width={image.width} height={image.height}
+        decoding="async" loading={hero ? 'eager' : 'lazy'} fetchPriority={hero ? 'high' : 'auto'} />
+    </picture>
     {image.caption && <figcaption>{image.caption}</figcaption>}
   </figure>;
 }
