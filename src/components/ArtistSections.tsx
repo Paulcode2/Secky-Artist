@@ -1,6 +1,6 @@
-﻿import type { ArtistContent } from '../content/artist';
+import type { ArtistContent } from '../content/artist';
 import { bookingHref } from '../content/artist';
-import { ArtistPhoto, ButtonLink, Container, Link, ProfileLinks, SectionHeading } from './ui';
+import { ArrowIcon, ArtistPhoto, ButtonLink, Container, Link, ProfileLinks, SectionHeading } from './ui';
 
 export function Hero({ artist, listeningTarget = '#music' }: { artist: ArtistContent; listeningTarget?: '#latest' | '#music' }) {
   return <section id="home" tabIndex={-1} aria-labelledby="artist-name"><Container className={`hero ${artist.heroImage ? '' : 'without-image'}`}>
@@ -10,11 +10,11 @@ export function Hero({ artist, listeningTarget = '#music' }: { artist: ArtistCon
       {artist.supportingText && <p className="hero-support">{artist.supportingText}</p>}
       {artist.motto && <p className="hero-motto">{artist.motto}</p>}
       {artist.isDraft && <p className="draft">Temporary artist name and introduction — approval pending.</p>}
-      <ButtonLink href={listeningTarget}>Listen Now <span aria-hidden="true">↗</span></ButtonLink>
+      <ButtonLink href={listeningTarget}>Listen Now <ArrowIcon /></ButtonLink>
       <ProfileLinks profiles={artist.streamingProfiles} label="Listen to the artist" />
     </div>
     {artist.heroImage && <ArtistPhoto image={artist.heroImage} hero />}
-    <div className="hero-bottom"><span>Music, in its own words.</span><Link href="#music">Explore the music <span aria-hidden="true">↓</span></Link></div>
+    <div className="hero-bottom"><span>Music, in its own words.</span><Link href="#music">Explore the music <ArrowIcon /></Link></div>
   </Container></section>;
 }
 

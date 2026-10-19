@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { releases, type Release } from '../content/releases';
 import type { ProfileLink } from '../content/artist';
 import { isUpcoming, listeningAction, selectReleases, todayInLagos, validDate } from '../lib/releases';
-import { ButtonLink, Container, Link, ProfileLinks, SectionHeading } from './ui';
+import { ArrowIcon, ButtonLink, Container, Link, ProfileLinks, SectionHeading } from './ui';
 
 export function ReleaseArtwork({ release, prominent = false }: { release: Release; prominent?: boolean }) {
   const [failedSource, setFailedSource] = useState<string>();
@@ -20,7 +20,7 @@ export function ListeningControl({ release, today }: { release: Release; today?:
   const chooser = useRef<HTMLDetailsElement>(null);
   const summary = useRef<HTMLElement>(null);
   if (action.kind === 'unavailable') return <p className="listening-unavailable">{action.message}</p>;
-  if (action.kind === 'direct') return <ButtonLink href={action.url} aria-label={`${action.label}: ${release.title}`}>{action.label} <span aria-hidden="true">↗</span></ButtonLink>;
+  if (action.kind === 'direct') return <ButtonLink href={action.url} aria-label={`${action.label}: ${release.title}`}>{action.label} <ArrowIcon /></ButtonLink>;
   return <details className="platform-chooser" ref={chooser} onKeyDown={event => {
     if (event.key === 'Escape' && chooser.current?.open) {
       event.preventDefault(); chooser.current.open = false; summary.current?.focus();
@@ -28,7 +28,7 @@ export function ListeningControl({ release, today }: { release: Release; today?:
   }}>
     <summary ref={summary} className="button" aria-label={`Listen Now: choose a platform for ${release.title}`}>Listen Now <span aria-hidden="true">+</span></summary>
     <div className="platform-options"><p>Choose a platform</p><ul>
-      {action.platforms.map(platform => <li key={platform.url}><Link href={platform.url} aria-label={`Listen to ${release.title} on ${platform.name}`}>{platform.name} <span aria-hidden="true">↗</span></Link></li>)}
+      {action.platforms.map(platform => <li key={platform.url}><Link href={platform.url} aria-label={`Listen to ${release.title} on ${platform.name}`}>{platform.name} <ArrowIcon /></Link></li>)}
     </ul></div>
   </details>;
 }
@@ -55,7 +55,7 @@ export function ReleaseSections({ entries = releases, profiles = [] }: { entries
       {featured ? <><ReleaseArtwork key={`${featured.id}-${featured.artwork?.src}`} release={featured} prominent /><div className="feature-copy">
         <SectionHeading id="latest-title" eyebrow="01 / Featured release">{featured.title}</SectionHeading>
         <ReleaseMeta release={featured} today={today} /><ListeningControl release={featured} today={today} />
-      </div></> : <><SectionHeading id="latest-title" eyebrow="01 / Featured release">Explore the music</SectionHeading><Link href="#music">Browse releases and listening platforms <span aria-hidden="true">↓</span></Link></>}
+      </div></> : <><SectionHeading id="latest-title" eyebrow="01 / Featured release">Explore the music</SectionHeading><Link href="#music">Browse releases and listening platforms <ArrowIcon /></Link></>}
     </Container></section>
     <section id="music" className="section" tabIndex={-1} aria-labelledby="music-title"><Container>
       <SectionHeading id="music-title" eyebrow="02 / The catalogue">Music<span className="dot">.</span></SectionHeading>

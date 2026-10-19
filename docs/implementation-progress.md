@@ -154,3 +154,7 @@ Added the supplied public booking address Info@seckyworldwide.com as a mailto li
 ## Client motto - 19 October 2026
 
 Added the exact client-supplied welcome motto beneath the hero introduction, with a restrained rust accent and vertical rule. Text lives in the optional `motto` field in `src/content/artist.ts`; no sign-up action or new section was introduced. Production build, TypeScript and all eight existing release tests passed. Deployment remains on hold.
+
+## My Name artwork replacement
+
+Replaced the My Name cover with the client-supplied `My name - secky.jpeg` (1024 x 1024), preserving the supplied image without cropping or editing. Updated the artwork source register. Release metadata and listening links remain unchanged.

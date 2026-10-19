@@ -2,6 +2,12 @@ import type { AnchorHTMLAttributes, ComponentPropsWithRef, ReactNode } from 'rea
 import type { ArtistImage, ProfileLink } from '../content/artist';
 import { validProfiles } from '../content/artist';
 
+export function ArrowIcon() {
+  return <svg className="link-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+    <path d="M4 12h15M13 6l6 6-6 6" />
+  </svg>;
+}
+
 export function Container({ children, className = '' }: { children: ReactNode; className?: string }) {
   return <div className={`wrap ${className}`}>{children}</div>;
 }
@@ -34,6 +40,6 @@ export function ProfileLinks({ profiles, label }: { profiles: ProfileLink[]; lab
   const links = validProfiles(profiles);
   if (!links.length) return null;
   return <ul className="profile-links flex flex-wrap gap-x-6 gap-y-2" aria-label={label}>
-    {links.map(({ label: name, url }) => <li key={`${name}-${url}`}><Link href={url}>{name} <span aria-hidden="true">↗</span></Link></li>)}
+    {links.map(({ label: name, url }) => <li key={`${name}-${url}`}><Link href={url}>{name} <ArrowIcon /></Link></li>)}
   </ul>;
 }

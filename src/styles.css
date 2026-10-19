@@ -167,6 +167,7 @@ footer .profile-links { margin-top: 0; }
 .featured .platform-options a:focus-visible { outline-color: var(--accent); }
 .featured > .wrap > a:hover { color: var(--on-dark); text-decoration-thickness: 2px; }
 .hero-support { max-width: 58ch; }
+.link-arrow { display: inline-block; width: 1.2rem; height: 1.2rem; flex-shrink: 0; vertical-align: -.25em; }
 .hero-motto { max-width: 46ch; margin-top: 1.5rem; padding-left: 1rem; border-left: 2px solid var(--accent); color: var(--accent); font-size: 1rem; line-height: 1.6; }
 .hero.without-image h1 { font-size: clamp(4rem, 17vw, 10rem); max-width: 100%; }
 .music-profiles { margin-bottom: var(--space-5); }
