@@ -151,6 +151,17 @@ footer .profile-links { margin-top: 0; }
 }
 
 .release-artwork { aspect-ratio: 1; width: 100%; background: #e7e2d7; }
+.release-listening-links { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.5rem; }
+.release-listening-links .button { --logo-cutout: var(--accent); margin-top: 0; gap: .7rem; padding-inline: 1rem; }
+.platform-logo { width: 1.5rem; height: 1.5rem; flex-shrink: 0; }
+.release-listening-links .button:hover { --logo-cutout: var(--hover); }
+.release-listening-links .button + .button { --logo-cutout: var(--paper); }
+.release-listening-links .button + .button:hover { --logo-cutout: var(--accent); }
+.featured .release-listening-links .button + .button { --logo-cutout: var(--dark); }
+.featured .release-listening-links .button + .button:hover { --logo-cutout: var(--accent); }
+.release-listening-links .button + .button { background: transparent; border-color: currentColor; color: var(--accent); }
+.release-listening-links .button + .button:hover { background: var(--accent); color: var(--paper); }
+.featured .release-listening-links .button + .button { color: var(--paper); }
 .release-artwork img { width: 100%; height: 100%; aspect-ratio: 1; object-fit: contain; }
 .artwork-fallback { display: grid; place-items: center; height: 100%; padding: 2rem; color: var(--muted); border: var(--border); font-size: .875rem; }
 .listening-unavailable { margin-top: 1.5rem; color: var(--muted); font-size: .875rem; }

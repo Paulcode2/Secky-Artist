@@ -54,3 +54,15 @@ The authoritative current verification register is `content-sources.md`: it dist
 Eight Node tests cover authored data, smart-link precedence, direct/chooser/unavailable states, duplicate and invalid links, future/pre-save transitions, calendar dates/timezone, feature exclusion, sorting and authoring errors. The production build runs these tests and TypeScript checks.
 
 The existing browser helper also renders isolated fixtures to check featured/grid rendering, long titles, missing/broken artwork, direct/smart/unavailable/pre-save behaviour, responsive 1/2/3-column layouts, chooser keyboard operation, Escape/focus return and emulated touch. Fixtures are test-only, not published client data. Real-device and screen-reader audits remain outstanding.
+
+## Header wordmark and platform buttons
+
+Changed only the header wordmark to the exact client text ArUsi’. Artist metadata, hero name and footer remain SECKY. The optional headerWordmark field lives in src/content/artist.ts.
+
+Every current release now has visible Listen on Spotify and Listen on Apple Music buttons, replacing the chooser. Both open new tabs with noopener noreferrer. Valid platform links take priority over a smart link in the UI; smart links remain a fallback when no platforms exist. Upcoming releases still require a real pre-save link. This supersedes prior chooser instructions.
+
+Missing Spotify destinations were discovered directly on the public artist page and their destination HTML titles and artist ID 2gyg88Hy443exTHje87bKk were verified:
+- My Name: https://open.spotify.com/track/4E99PWSUTRKyPK97TZkuNF (title also confirms the choir collaborator).
+- Black: https://open.spotify.com/track/0H8uVUagukefzhUNp2BqBH.
+- Letter to my wife (Redux): https://open.spotify.com/album/6H3XGnkh65NSCZUDOH6or5 (single/release destination).
+Existing Celebration Spotify and all Apple Music destinations retained. No playback or regional availability claim is made. Deployment remains on hold.

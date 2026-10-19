@@ -30,27 +30,18 @@ export async function checkReleases({ evaluate, call, key, settle }) {
     unavailable: [...document.querySelectorAll('#release-test-fixture article')].find(a=>a.textContent.includes('Unavailable test')).querySelectorAll('a,button,summary').length,
     presave: [...document.querySelectorAll('#release-test-fixture a')].some(a=>a.textContent.includes('Pre-save') && a.href==='https://example.test/save'),
     single: [...document.querySelectorAll('#release-test-fixture article')].find(a=>a.textContent.includes('Direct platform test')).querySelector('a').href
-  })`), { featured:'Featured test release',count:4,direct:'https://example.test/smart',noDuplicate:true,fallbacks:4,unavailable:0,presave:true,single:'https://example.test/track' });
+  })`), { featured:'Featured test release',count:4,direct:'https://example.test/track',noDuplicate:true,fallbacks:4,unavailable:0,presave:true,single:'https://example.test/track' });
   for (const width of [320, 390, 768, 1440]) {
     await call('Emulation.setDeviceMetricsOverride', { width, height: 900, deviceScaleFactor: 1, mobile: width < 640 }); await settle();
     assert.ok(await evaluate(`document.documentElement.scrollWidth <= ${width}`));
     assert.equal(await evaluate(`getComputedStyle(document.querySelector('#release-test-fixture .release-grid')).gridTemplateColumns.split(' ').length`), width < 640 ? 1 : width < 1024 ? 2 : 3);
   }
   await call('Emulation.setDeviceMetricsOverride', { width: 390, height: 900, deviceScaleFactor: 1, mobile: true }); await settle();
-  await evaluate(`document.querySelector('#release-test-fixture summary').focus()`);
-  await key('Enter', 'Enter', 13);
-  assert.equal(await evaluate(`document.querySelector('#release-test-fixture details').open`), true);
+  await evaluate(`document.querySelector('#release-test-fixture .release-listening-links a').focus()`);
+  assert.equal(await evaluate('document.activeElement.getAttribute("aria-label").startsWith("Listen on Spotify")'), true);
   await key('Tab', 'Tab', 9);
-  assert.equal(await evaluate('document.activeElement.textContent.trim().startsWith("Spotify")'), true);
-  await key('Escape', 'Escape', 27);
-  assert.equal(await evaluate(`document.querySelector('#release-test-fixture details').open`), false);
-  assert.equal(await evaluate('document.activeElement.tagName'), 'SUMMARY');
-  await evaluate(`document.querySelector('#release-test-fixture summary').scrollIntoView({block:'center'})`); await settle();
-  const point = await evaluate(`(() => {const r=document.querySelector('#release-test-fixture summary').getBoundingClientRect();return {x:r.left+r.width/2,y:r.top+r.height/2};})()`);
-  await call('Input.dispatchTouchEvent', { type:'touchStart',touchPoints:[point] });
-  await call('Input.dispatchTouchEvent', { type:'touchEnd',touchPoints:[] }); await settle();
-  assert.equal(await evaluate(`document.querySelector('#release-test-fixture details').open`), true);
-  assert.equal(await evaluate(`document.querySelectorAll('#release-test-fixture details a').length`), 2);
+  assert.equal(await evaluate('document.activeElement.getAttribute("aria-label").startsWith("Listen on Apple Music")'), true);
+  assert.equal(await evaluate(`document.querySelectorAll('#release-test-fixture summary').length`), 0);
   await evaluate(`window.releaseFixtureRoot.unmount();document.getElementById('release-test-fixture').remove();document.getElementById('root').style.display='';`);
-  return 'Featured/grid, smart/direct/unavailable/pre-save, artwork fallback, responsive columns, keyboard/Escape/focus and touch passed';
+  return 'Featured/grid, visible platform links, unavailable/pre-save, artwork fallback, responsive columns and keyboard navigation passed';
 }

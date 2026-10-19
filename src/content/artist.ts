@@ -23,6 +23,7 @@ export interface ProfileLink {
 export interface ArtistContent {
   isDraft: boolean;
   stageName: string;
+  headerWordmark?: string;
   fullName: string;
   pageTitle: string;
   metaDescription: string;
@@ -50,6 +51,7 @@ export interface ArtistContent {
 export const artist: ArtistContent = {
   isDraft: false,
   stageName: 'SECKY',
+  headerWordmark: 'ArUsi’',
   fullName: 'Success Enwerem Chimezie KingsleY',
   pageTitle: 'SECKY | Official Website',
   metaDescription: 'Discover SECKY, a Nigerian Afrobeat and pop artist based in the United Kingdom. Explore his music and listen on Spotify and Apple Music.',

@@ -52,3 +52,19 @@ All four official covers are now integrated at the explicit user request. Apple 
 About now uses a balanced portrait-and-text layout, smaller heading and readable 16px biography. The repeated short introduction was removed from this section; the full approved biography is unchanged. Mobile stacks naturally.
 
 Production build, TypeScript, all eight tests and browser checks at 320/390/768/1440/1920px passed. Four loaded covers, no artwork fallbacks, navigation, listening fixtures and keyboard/touch checks passed with no runtime exceptions. Mobile/desktop screenshots were refreshed and visually reviewed. Deployment remains on hold.
+
+## Header wordmark and platform buttons
+
+Changed only the header wordmark to the exact client text ArUsi’. Artist metadata, hero name and footer remain SECKY. The optional headerWordmark field lives in src/content/artist.ts.
+
+Every current release now has visible Listen on Spotify and Listen on Apple Music buttons, replacing the chooser. Both open new tabs with noopener noreferrer. Valid platform links take priority over a smart link in the UI; smart links remain a fallback when no platforms exist. Upcoming releases still require a real pre-save link. This supersedes prior chooser instructions.
+
+Missing Spotify destinations were discovered directly on the public artist page and their destination HTML titles and artist ID 2gyg88Hy443exTHje87bKk were verified:
+- My Name: https://open.spotify.com/track/4E99PWSUTRKyPK97TZkuNF (title also confirms the choir collaborator).
+- Black: https://open.spotify.com/track/0H8uVUagukefzhUNp2BqBH.
+- Letter to my wife (Redux): https://open.spotify.com/album/6H3XGnkh65NSCZUDOH6or5 (single/release destination).
+Existing Celebration Spotify and all Apple Music destinations retained. No playback or regional availability claim is made. Deployment remains on hold.
+
+## Client-supplied Spotify track links
+
+The client supplied track links for My Name (4E99PWSUTRKyPK97TZkuNF), Letter to my wife (Redux) (3qrb8LnqPLEDCxRoKWLph8) and Black (0H8uVUagukefzhUNp2BqBH). My Name and Black already matched. Replaced the Redux album destination with the supplied direct track; Spotify page title and SECKY artist ID were confirmed. Omitted share-tracking query parameters while preserving each track ID. Playback was not tested.

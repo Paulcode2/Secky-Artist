@@ -74,6 +74,11 @@ try {
     assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('${section} .profile-links a'), a => a.href)`), suppliedProfiles);
   }
   assert.equal(await evaluate('document.title'), 'SECKY | Official Website');
+  assert.equal(await evaluate('document.querySelector("header .wordmark").textContent'), 'ArUsi’');
+  assert.equal(await evaluate(`Array.from(document.querySelectorAll('.release')).every(card => {
+    const links = Array.from(card.querySelectorAll('.release-listening-links a'));
+    return links.length === 2 && links[0].getAttribute('aria-label').startsWith('Listen on Spotify:') && links[1].getAttribute('aria-label').startsWith('Listen on Apple Music:') && links.every(a => a.querySelector('.platform-logo'));
+  })`), true);
   assert.equal(await evaluate('document.querySelector(".hero .button").hash'), '#music');
   assert.equal(await evaluate('document.querySelectorAll(".hero img, #about img").length'), 2);
   assert.equal(await evaluate(`Array.from(document.querySelectorAll('.hero img, #about img')).every(i => i.complete && i.naturalWidth > 0 && i.alt.includes('SECKY') && !i.src.includes('temporary'))`), true);

@@ -42,8 +42,8 @@ export function Header({ artist }: { artist: ArtistContent }) {
     if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false);
   }}>
     <Container className="site-header">
-      <Link className="wordmark" href="#home" onClick={() => navigate('home')} aria-label={`${artist.stageName}, back to top`}>
-        {artist.logo ? <img className="artist-logo" src={artist.logo.src} alt={artist.stageName} width={artist.logo.width} height={artist.logo.height} /> : <>{artist.stageName}<span className="dot">.</span></>}
+      <Link className="wordmark" href="#home" onClick={() => navigate('home')} aria-label={`${artist.headerWordmark ?? artist.stageName}, back to top`}>
+        {artist.headerWordmark ?? (artist.logo ? <img className="artist-logo" src={artist.logo.src} alt={artist.stageName} width={artist.logo.width} height={artist.logo.height} /> : <>{artist.stageName}<span className="dot">.</span></>)}
       </Link>
       <Button ref={toggle} className="menu-toggle" aria-expanded={open} aria-controls="main-navigation" onClick={() => setOpen(!open)}>{open ? 'Close' : 'Menu'} <span aria-hidden="true">{open ? '−' : '+'}</span></Button>
       <nav id="main-navigation" className={open ? 'navigation is-open' : 'navigation'} aria-label="Main navigation">

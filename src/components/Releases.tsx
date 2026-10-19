@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { PlatformLogo } from './PlatformLogo';
 import { releases, type Release } from '../content/releases';
 import type { ProfileLink } from '../content/artist';
-import { isUpcoming, listeningAction, selectReleases, todayInLagos, validDate } from '../lib/releases';
+import { externalUrl, isUpcoming, listeningAction, selectReleases, todayInLagos, validDate } from '../lib/releases';
 import { ArrowIcon, ButtonLink, Container, Link, ProfileLinks, SectionHeading } from './ui';
 
 export function ReleaseArtwork({ release, prominent = false }: { release: Release; prominent?: boolean }) {
@@ -17,22 +18,17 @@ export function ReleaseArtwork({ release, prominent = false }: { release: Releas
 
 export function ListeningControl({ release, today }: { release: Release; today?: string }) {
   const action = listeningAction(release, today);
-  const chooser = useRef<HTMLDetailsElement>(null);
-  const summary = useRef<HTMLElement>(null);
   if (action.kind === 'unavailable') return <p className="listening-unavailable">{action.message}</p>;
-  if (action.kind === 'direct') return <ButtonLink href={action.url} aria-label={`${action.label}: ${release.title}`}>{action.label} <ArrowIcon /></ButtonLink>;
-  return <details className="platform-chooser" ref={chooser} onKeyDown={event => {
-    if (event.key === 'Escape' && chooser.current?.open) {
-      event.preventDefault(); chooser.current.open = false; summary.current?.focus();
-    }
-  }}>
-    <summary ref={summary} className="button" aria-label={`Listen Now: choose a platform for ${release.title}`}>Listen Now <span aria-hidden="true">+</span></summary>
-    <div className="platform-options"><p>Choose a platform</p><ul>
-      {action.platforms.map(platform => <li key={platform.url}><Link href={platform.url} aria-label={`Listen to ${release.title} on ${platform.name}`}>{platform.name} <ArrowIcon /></Link></li>)}
-    </ul></div>
-  </details>;
+  const platforms = release.platforms.filter((platform, index, all) =>
+    platform.name.trim() && externalUrl(platform.url) && all.findIndex(p => p.url === platform.url) === index);
+  if (!isUpcoming(release, today) && platforms.length) return <div className="release-listening-links">
+    {platforms.map(platform => <ButtonLink key={platform.url} href={platform.url} title={`Listen on ${platform.name}`} aria-label={`Listen on ${platform.name}: ${release.title}`}>
+      Listen on <PlatformLogo name={platform.name} />
+    </ButtonLink>)}
+  </div>;
+  if (action.kind === 'direct') return <ButtonLink href={action.url} aria-label={`${action.label}: ${release.title}`}>{action.label === 'Pre-save' ? 'Pre-save' : 'Choose listening platform'} <ArrowIcon /></ButtonLink>;
+  return null;
 }
-
 function ReleaseMeta({ release, today }: { release: Release; today: string }) {
   const date = validDate(release.releaseDate);
   const formatted = date && new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${date}T00:00:00Z`));
