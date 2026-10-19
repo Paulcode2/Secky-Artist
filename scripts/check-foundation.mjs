@@ -2,6 +2,7 @@
 import assert from 'node:assert/strict';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { checkReleases } from './browser-release-checks.mjs';
+import { checkVideos } from './browser-video-checks.mjs';
 import { auditPage } from './browser-page-audit.mjs';
 const siteUrl = process.env.QA_URL || 'http://127.0.0.1:5173/';
 const response = await fetch(siteUrl);
@@ -56,11 +57,17 @@ try {
   await key('Enter', 'Enter', 13);
   assert.equal(await evaluate('document.querySelector(".menu-toggle").getAttribute("aria-expanded")'), 'true');
   await key('Tab', 'Tab', 9);
-  assert.equal(await evaluate('document.activeElement.textContent'), 'Music');
+  assert.equal(await evaluate('document.activeElement.textContent'), 'MP3');
   await key('Escape', 'Escape', 27);
   assert.equal(await evaluate('document.activeElement.classList.contains("menu-toggle")'), true);
   assert.equal(await evaluate('document.querySelector(".menu-toggle").getAttribute("aria-expanded")'), 'false');
   await key('Enter', 'Enter', 13); await key('Tab', 'Tab', 9); await key('Tab', 'Tab', 9); await key('Enter', 'Enter', 13);
+  assert.equal(await evaluate('document.activeElement.id'), 'mp4');
+  assert.equal(await evaluate('location.hash'), '#mp4');
+  assert.equal(await evaluate('document.querySelector(".menu-toggle").getAttribute("aria-expanded")'), 'false');
+  assert.ok(await evaluate('document.querySelector("#mp4").getBoundingClientRect().top >= document.querySelector("header").getBoundingClientRect().bottom'));
+  await evaluate('document.querySelector(".menu-toggle").focus()'); await key('Enter', 'Enter', 13);
+  await key('Tab', 'Tab', 9); await key('Tab', 'Tab', 9); await key('Tab', 'Tab', 9); await key('Enter', 'Enter', 13);
   assert.equal(await evaluate('document.activeElement.id'), 'about');
   assert.equal(await evaluate('location.hash'), '#about');
   assert.equal(await evaluate('document.querySelector(".menu-toggle").getAttribute("aria-expanded")'), 'false');
@@ -83,10 +90,15 @@ try {
   assert.equal(await evaluate('document.querySelectorAll(".hero img, #about img").length'), 2);
   assert.equal(await evaluate(`Array.from(document.querySelectorAll('.hero img, #about img')).every(i => i.complete && i.naturalWidth > 0 && i.alt.includes('SECKY') && !i.src.includes('temporary'))`), true);
   assert.equal(await evaluate(`Array.from(document.querySelectorAll('.release a')).some(a => ${JSON.stringify(suppliedProfiles)}.includes(a.href))`), false);
-  assert.equal(await evaluate('/Artist Name|temporary biography|sample release|Tours|Videos/i.test(document.body.innerText)'), false);
+  assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('#music .release h3')).slice(-2).map(h => h.textContent.trim())`), ['Infatuation', 'Lagos 2 London']);
+  assert.equal(await evaluate('document.querySelectorAll("#music .release").length'), 6);
+  assert.equal(await evaluate(`Array.from(document.querySelectorAll('#music .release')).slice(-2).every(card => card.querySelectorAll('.release-listening-links a').length === 2 && card.querySelector('.release-artwork img')?.complete && card.querySelector('.release-artwork img')?.naturalWidth > 0)`), true);
+  assert.equal(await evaluate('/Artist Name|temporary biography|sample release|Tours/i.test(document.body.innerText)'), false);
   assert.equal(await evaluate('document.querySelector("#about").textContent.includes("Success Enwerem Chimezie KingsleY")'), true);
   const pageAudit = await auditPage({ evaluate, key });
   console.log(JSON.stringify({pageAudit},null,2));
+  const videoChecks = await checkVideos({ evaluate, call, key, settle, includeFixtures: !process.env.QA_URL });
+  console.log(JSON.stringify({videoChecks}));
   if (!process.env.QA_URL) {
   const contentChecks = await evaluate(`(async () => {
     const { bookingHref, validProfiles } = await import('/src/content/artist.ts');

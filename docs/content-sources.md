@@ -12,13 +12,13 @@ Still needed: confirmation of name capitalisation; Top Naija Music Awards year/c
 
 | Source | Check and use |
 | --- | --- |
-| [Spotify artist profile](https://open.spotify.com/artist/2gyg88Hy443exTHje87bKk) | Direct extraction returned a Secky title but no body. Indexed Spotify content identifies the supplied full name/background and discography. The exact supplied URL is used in hero, Music, Contact and footer. Playback/account availability was not tested. |
+| [Spotify artist profile](https://open.spotify.com/artist/2gyg88Hy443exTHje87bKk) | Direct extraction returned a Secky title but no body. Indexed Spotify content identifies the supplied full name/background and discography. The exact supplied URL is used in hero, MP3, Contact and footer. Playback/account availability was not tested. |
 | [Apple Music GB artist profile](https://music.apple.com/gb/artist/secky/1756161815) | Direct fetch returned a cache miss. The exact client URL is retained in the site; not replaced with a guessed address. |
 | [Apple Music US profile, same artist ID](https://music.apple.com/us/artist/secky/1756161815) | Accessible cached page identifies Secky and links to releases. Used for corroborating catalogue identity, not to replace the client's GB profile. Its older snapshot and newer search index differ, so no latest/featured designation was inferred. |
 
 ## Catalogue entries integrated
 
-Only these four releases were added. Dates, titles and types below are metadata from the linked platform sources. The platform suffix “- Single” is represented by the separate type field. All have `featured: false`, no smart link and no artwork: image access does not grant reuse permission. This is a partial verified catalogue, not a claim of completeness.
+The initial catalogue integration added the four releases listed below. Dates, titles and types were taken from the linked platform sources; the platform suffix “- Single” is represented by the separate type field. At that stage, all had `featured: false`, no smart link and no artwork. The client-requested Infatuation and Lagos 2 London EPs were subsequently added in the update below. This remains a partial catalogue, not a claim of completeness.
 
 | Entry | Type/date | Source/destination and verification limit |
 | --- | --- | --- |
@@ -29,7 +29,18 @@ Only these four releases were added. Dates, titles and types below are metadata 
 
 Links retain the actual discovered US release URLs rather than inventing GB equivalents. Artist profiles are never used as release links. The existing chooser is used for Celebration's two verified platform destinations; the other three link directly to their release-specific Apple Music pages. No live playback was attempted and no sign-in was performed.
 
-Other entries seen in profile/index snapshots (including Infatuation, Lagos to London/Lagos 2 London, Aboki Amapiano/Amapiano Aboki and Arusi/Arusi (Masquerade)) were not added. Some details differ between snapshots or lacked accessible release-page confirmation. Ask the client for the complete canonical catalogue, preferred titles and per-platform release links. No release is labelled latest or selected as featured solely from a profile snapshot or biography mention.
+The initial source review deferred other profile/index snapshot entries pending direct release-page confirmation. Infatuation and Lagos 2 London are now included based on the client's exact HyperFollow links and matching covers, with Spotify-confirmed metadata recorded below. Aboki Amapiano/Amapiano Aboki and Arusi/Arusi (Masquerade) remain outside the catalogue. The complete canonical catalogue and featured selection still need client review.
+
+## Client-requested MP3 additions — 19 October 2026
+
+The client supplied both HyperFollow URLs and the matching cover-art attachments. Their HyperFollow pages provide the release-specific Spotify and Apple Music destinations below. Direct Spotify pages confirm title, artist/type and release date; direct Apple Music fetches returned cache errors, so titles/dates are not independently asserted from Apple. URLs are syntax-checked and linked as supplied by HyperFollow; current regional availability/playback still needs client review.
+
+| Entry | Type/date | Spotify | Apple Music | Cover/source |
+| --- | --- | --- | --- | --- |
+| Infatuation | EP, 2024-07-15 | [Spotify EP by Secky](https://open.spotify.com/album/4KLrZlZcKbK55f8KbxXshk) confirms four tracks and date. | [Apple Music Infatuation EP](https://music.apple.com/us/album/infatuation-ep/1756520071?uo=4), linked from the supplied HyperFollow page; direct fetch returned an error. | Client-supplied cover shows “Infatuation (EP)” and SECKY; stored as `src/assets/releases/infatuation.jpg`. |
+| Lagos 2 London | EP, 2025-12-12 | [Spotify EP by Yeye Boiz](https://open.spotify.com/album/0mMxLf1UH34ikskq84otkg) confirms six tracks, date, and Secky credits on five tracks. | [Apple Music Lagos 2 London EP](https://music.apple.com/us/album/lagos-2-london-ep/1858948120?uo=4), linked from the supplied HyperFollow page; direct fetch returned an error. | Client-supplied cover identifies Lagos 2 London / YeYe Boiz; stored as `src/assets/releases/lagos-2-london.jpg`. |
+
+The four previous releases remain unchanged. Both new EPs are appended after them using the explicit catalogue order property (1 then 2) because the default catalogue sorts by release date. Neither is featured. Artwork provenance and asset paths are recorded in `release-artwork-sources.json`; the public page uses the supplied originals, with descriptive alt text. No dates or direct platform IDs were inferred from title similarity.
 
 ## Assets and publication gaps
 
@@ -68,3 +79,16 @@ Existing Celebration Spotify and all Apple Music destinations retained. No playb
 ## Client-supplied Spotify track links
 
 The client supplied track links for My Name (4E99PWSUTRKyPK97TZkuNF), Letter to my wife (Redux) (3qrb8LnqPLEDCxRoKWLph8) and Black (0H8uVUagukefzhUNp2BqBH). My Name and Black already matched. Replaced the Redux album destination with the supplied direct track; Spotify page title and SECKY artist ID were confirmed. Omitted share-tracking query parameters while preserving each track ID. Playback was not tested.
+
+## Client-supplied YouTube videos — 19 October 2026
+
+The four YouTube links below were supplied for the new MP4 section. Their titles were retrieved from YouTube's public oEmbed metadata; that metadata returned the title and a 22 SANTINO channel author for each URL. No titles or videos were invented. The author field alone does not establish channel ownership or approval; the exact supplied video URLs are the source of inclusion. No video was played or availability/regional access verified.
+
+| Video title from YouTube metadata | Supplied link | Extracted video ID |
+| --- | --- | --- |
+| 22 SANTINO x Secky - Why (Official Music Video) | https://youtu.be/-2fzkNE0JsM?is=9RBA_5LB4rVW4FQU | `-2fzkNE0JsM` |
+| Secky x FIFA Sound - Celebration In The Air (Hola Hola) (Official Music Video) | https://youtu.be/a2AZKeTLg5g?is=z4RBKJow9F0Rq8At | `a2AZKeTLg5g` |
+| Secky - Take You To Places (Official Music Video) | https://youtu.be/GgEs7aYDEjM?is=i6GJB_VpwX17lUZb | `GgEs7aYDEjM` |
+| Secky x 22 SANTINO - Fire (Official Music Video) | https://youtu.be/sWppd363iGU?is=lIGYVjN-f5yokVYe | `sWppd363iGU` |
+
+The video data lives in `src/content/videos.ts`; thumbnail images are derived from each validated ID, with `maxresdefault.jpg` falling back to `hqdefault.jpg` on image failure or a 120×90 placeholder. Browser checks loaded the first two requested max-resolution thumbnails at 1280×720. No local thumbnail files were supplied or copied. At rest, no YouTube iframe is created. A visitor's play-button activation creates an iframe using an ID-derived `youtube-nocookie.com` URL with autoplay enabled; the adjacent Watch on YouTube fallback is also built from that ID. Tracking parameters remain in the source URL only, never in the iframe or generated Watch URL. See `docs/release-management.md` for supported formats, authoring validation and maintenance steps.

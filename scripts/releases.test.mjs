@@ -49,7 +49,22 @@ test('explicit feature excluded from descending catalogue; undated last and ID t
   assert.equal(selectReleases([base]).featured, undefined);
   assert.equal(selectReleases([base, base, { ...base, id: 'blank', title: '' }]).catalogue.length, 1);
 });
+test('client-supplied EPs appear last in the requested order with both streaming links', () => {
+  const { catalogue } = selectReleases(releases);
+  const lastTwo = catalogue.slice(-2);
+  assert.deepEqual(lastTwo.map(release => release.id), ['infatuation', 'lagos-2-london']);
+  assert.deepEqual(lastTwo.map(release => release.title), ['Infatuation', 'Lagos 2 London']);
+  assert.deepEqual(lastTwo.map(release => release.type), ['EP', 'EP']);
+  assert.deepEqual(lastTwo.map(release => release.platforms.map(platform => platform.name)), [
+    ['Spotify', 'Apple Music'], ['Spotify', 'Apple Music'],
+  ]);
+  assert.deepEqual(lastTwo.map(release => release.platforms.map(platform => platform.url)), [
+    ['https://open.spotify.com/album/4KLrZlZcKbK55f8KbxXshk', 'https://music.apple.com/us/album/infatuation-ep/1756520071?uo=4'],
+    ['https://open.spotify.com/album/0mMxLf1UH34ikskq84otkg', 'https://music.apple.com/us/album/lagos-2-london-ep/1858948120?uo=4'],
+  ]);
+});
 test('authoring validation catches ambiguous feature, duplicates, blank cards and malformed content', () => {
   assert.ok(releaseErrors([{ ...base, featured: true }, { ...base, featured: true }]).length >= 2);
   assert.ok(releaseErrors([{ ...base, title: '', releaseDate: 'bad', artwork: { src: '', alt: '' }, smartLink: '#' }]).length >= 4);
+  assert.ok(releaseErrors([{ ...base, catalogueOrder: -1 }]).some(error => error.includes('invalid catalogue order')));
 });

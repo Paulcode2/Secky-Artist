@@ -4,6 +4,7 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Hero, About, Contact } from './components/ArtistSections';
 import { ReleaseSections } from './components/Releases';
+import { VideoSection } from './components/Videos';
 import { releases } from './content/releases';
 import { listeningAction, selectReleases } from './lib/releases';
 
@@ -18,7 +19,7 @@ export default function App() {
     <a className="skip" href="#main">Skip to content</a>
     {artist.isDraft && <aside className="preview-note">Development preview <span>Temporary name, copy & imagery · not for publication</span></aside>}
     <Header artist={artist} />
-    <main id="main" tabIndex={-1}><Hero artist={artist} listeningTarget={listeningTarget} /><ReleaseSections profiles={artist.streamingProfiles} /><About artist={artist} /><Contact artist={artist} /></main>
+    <main id="main" tabIndex={-1}><Hero artist={artist} listeningTarget={listeningTarget} /><ReleaseSections profiles={artist.streamingProfiles} /><VideoSection /><About artist={artist} /><Contact artist={artist} /></main>
     <Footer artist={artist} />
   </>;
 }

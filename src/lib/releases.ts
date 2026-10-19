@@ -58,6 +58,10 @@ export function selectReleases(entries: Release[]) {
   });
   const featured = unique.find(release => release.featured);
   const catalogue = unique.filter(release => release !== featured).sort((a, b) => {
+    const aHasOrder = a.catalogueOrder !== undefined;
+    const bHasOrder = b.catalogueOrder !== undefined;
+    if (aHasOrder !== bHasOrder) return aHasOrder ? 1 : -1;
+    if (aHasOrder && bHasOrder) return a.catalogueOrder! - b.catalogueOrder! || a.id.localeCompare(b.id);
     const aDate = validDate(a.releaseDate) ?? '';
     const bDate = validDate(b.releaseDate) ?? '';
     return bDate.localeCompare(aDate) || a.id.localeCompare(b.id);
@@ -76,6 +80,7 @@ export function releaseErrors(entries: Release[]): string[] {
     if (!release.title.trim()) errors.push(`${release.id}: title required`);
     if (!['single', 'EP', 'album'].includes(release.type)) errors.push(`${release.id}: invalid release type`);
     if (release.releaseDate && !validDate(release.releaseDate)) errors.push(`${release.id}: invalid date`);
+    if (release.catalogueOrder !== undefined && (!Number.isInteger(release.catalogueOrder) || release.catalogueOrder < 0)) errors.push(`${release.id}: invalid catalogue order`);
     if (release.artwork && (!release.artwork.src.trim() || !release.artwork.alt.trim())) errors.push(`${release.id}: artwork needs a source and text alternative`);
     for (const url of [release.smartLink, release.preSaveUrl, ...release.platforms.map(p => p.url)]) {
       if (url !== undefined && !externalUrl(url)) errors.push(`${release.id}: invalid HTTPS destination`);

@@ -1,6 +1,6 @@
 # Musician promotional website: project scope
 
-Planning date: 18 October 2026. Status: planning complete; interface not implemented.
+Planning date: 18 October 2026. Initial status below is historical; the approved section/order update dated 19 October 2026 is recorded in “Section order and behaviour.”
 
 ## Objective and repository findings
 
@@ -16,29 +16,32 @@ Use the supplied reference principles of prominent identity, featured release, r
 
 ## Section order and behaviour
 
-| Order | Section | Planned content and behaviour |
-| --- | --- | --- |
-| 1 | Header and navigation | Approved logo or text stage name linking to the top. In-page links: Latest Release, Music, About, Contact. |
-| 2 | Hero (`home`) | Stage name, short introduction, approved hero photograph, and a primary link to the featured release. |
-| 3 | Featured/latest release (`latest`) | One approved release, prominent artwork, title, type, release date, and labelled listening links. |
-| 4 | Music catalogue (`music`) | Artwork-led cards with title, type, date, and listening links, newest first. The featured release may also appear here. |
-| 5 | About (`about`) | Approved full biography; optional secondary portrait. Use the short biography for a concise introduction or metadata where appropriate. |
-| 6 | Booking/contact (`contact`) | Public booking or management email with a working `mailto:` link and selectable address. Optional approved contact label. |
-| 7 | Footer | Stage name, copyright attribution confirmed by the client, and approved social and streaming profile links. |
+Original planning order superseded by the approved SECKY implementation update on 19 October 2026:
 
-Navigation anchors must match section IDs. Keep the single-page flow usable without complex interaction. On narrow screens, stack the hero and release layouts and use a single-column catalogue; increase columns as space allows. Navigation may wrap or use an accessible menu if needed. Maintain readable text, comfortable touch targets, visible focus, keyboard operation, suitable contrast, meaningful image alternatives, and reduced-motion support if motion is added. Avoid autoplay audio.
+| Order | Section | Visible navigation / content |
+| --- | --- | --- |
+| 1 | Header and navigation | MP3 (`#music`), MP4 (`#mp4`), INFO (`#about`), Contact (`#contact`); desktop links and mobile disclosure. |
+| 2 | Hero (`home`) | SECKY alone as the dominant h1, existing supporting introduction, approved portrait, streaming links and listening action. |
+| 3 | Featured/latest release (`latest`) | Existing featured-release state and labelled listening links. |
+| 4 | MP3 catalogue (`music`) | Existing artwork-led catalogue, release metadata, artist profiles and streaming links. No downloads. |
+| 5 | MP4 videos (`mp4`) | Client-supplied YouTube music videos in 16:9 click-to-load previews. Privacy-enhanced embeds, direct YouTube fallback, no self-hosted files or backend. |
+| 6 | INFO (`about`) | Existing approved biography and portrait; section ID retained. |
+| 7 | Contact (`contact`) | Existing public booking/contact details and profiles. |
+| 8 | Footer | Stage name, copyright attribution when confirmed, and approved social/streaming links. |
+
+Navigation anchors must match section IDs. Preserve `#music`, `#about`, and `#contact`; only `#mp4` is new. Keep the single-page flow accessible with desktop and mobile navigation, focusable section targets and the measured sticky-header offset. The hero h1 must remain fully visible without horizontal overflow on small screens. Video previews keep a 16:9 ratio; if no valid video entries are supplied, show “Videos coming soon.” Avoid loading any player until the visitor activates its Play video control. Avoid autoplay audio/video.
 
 ## Included and excluded
 
-Included in the future implementation: the seven sections above, responsive styling, accessible navigation, approved local imagery, external listening/profile links, email contact, and basic page title, description, favicon and social sharing metadata when assets are supplied.
+Included in the current approved implementation: the sections above, responsive styling, accessible navigation, supplied local imagery, external listening/profile links, YouTube-hosted music video links, privacy-enhanced click-to-load embeds, email contact, and existing metadata. “MP3” and “MP4” are display labels only; they do not imply audio downloads or locally hosted video.
 
-Tours and Videos are explicitly excluded: no sections, pages, navigation items, embeds, or placeholder content for either. Also excluded from initial scope: backend, CMS, authentication, newsletter, payment gateway, admin dashboard, contact form processing, commerce, and invented testimonials or metrics. No hosting registration, deployment, interface scaffolding, or application code is part of this planning phase.
+Tours remain excluded. Videos are no longer excluded: the approved MP4 section accepts only valid YouTube watch, youtu.be, and Shorts links. Also excluded: video uploads/self-hosted MP4 files, backend, CMS, authentication, newsletter, payment gateway, admin dashboard, contact form processing, commerce, and invented testimonials or metrics. This is an approved content-scope update; earlier planning statements to the contrary are historical and superseded.
 
 ## Developer-managed content plan
 
-Proposed paths for the later implementation, not files created in this phase:
+The following paths record the original planning proposal, now superseded by the typed implementation. Current sources of truth are `src/content/artist.ts`, `src/content/releases.ts`, and `src/content/videos.ts`; see `release-management.md` for edits and validation.
 
-| File/location | Contents |
+| Original proposal | Contents |
 | --- | --- |
 | `content/artist.json` | `stageName`, `introduction`, `shortBio`, `fullBio`, hero image path and alternative text, optional logo/portraits, public booking email, contact label, approved copyright attribution. |
 | `content/releases.json` | `featuredReleaseId` and a `releases` array. Each entry: stable unique `id`, `title`, `type` (single/EP/album or approved category), `releaseDate` in `YYYY-MM-DD`, artwork path and alternative text, and `listeningLinks` containing platform label and HTTPS URL. |
@@ -72,4 +75,4 @@ After content changes, the developer previews the page, checks links and layout,
 
 ## Planning acceptance
 
-Section order, exclusions, content ownership, missing inputs, maintenance steps and future implementation checks are documented. Completion of this document does not mean a website exists or is ready to launch.
+Initial planning acceptance recorded the requested order, exclusions, content ownership, missing inputs, maintenance steps and future checks. The approved application and later MP4 update supersede that planning-only status; current production readiness and client blockers are tracked in `qa-report.md`.

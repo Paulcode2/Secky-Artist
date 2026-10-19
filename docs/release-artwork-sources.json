@@ -1,34 +1,49 @@
 [
-    {
-        "id":  "6811251027",
-        "title":  "My Name (feat. I’ll Take You There Choir) - Single",
-        "artist":  "Secky",
-        "artistId":  1756161815,
-        "source":  "Client-supplied attachment: My name - secky.jpeg; replaces the Apple catalogue cover at the explicit user request.",
-        "file":  "src/assets/releases/my-name.jpg"
-    },
-    {
-        "id":  "1888957592",
-        "title":  "Celebration in the air (FIFA World Cup 2026) (feat. FIFA SOUND) - Single",
-        "artist":  "Secky",
-        "artistId":  1756161815,
-        "source":  "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ad/62/3d/ad623dfb-eaeb-7710-8efa-2f43dd324fb6/artwork.jpg/800x800bb.jpg",
-        "file":  "src/assets/releases/celebration-in-the-air.jpg"
-    },
-    {
-        "id":  "1891233342",
-        "title":  "Letter to my wife (Redux) - Single",
-        "artist":  "Secky",
-        "artistId":  1756161815,
-        "source":  "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3a/b7/72/3ab772a3-4d20-9119-ab1b-6af2c9b54f1d/artwork.jpg/800x800bb.jpg",
-        "file":  "src/assets/releases/letter-to-my-wife-redux.jpg"
-    },
-    {
-        "id":  "1843594841",
-        "title":  "Black - Single",
-        "artist":  "Secky",
-        "artistId":  1756161815,
-        "source":  "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3e/a1/e1/3ea1e1a1-bccb-8e50-15f4-c13cd8fcf03d/artwork.jpg/800x800bb.jpg",
-        "file":  "src/assets/releases/black.jpg"
-    }
+  {
+    "id": "6811251027",
+    "title": "My Name (feat. I’ll Take You There Choir) - Single",
+    "artist": "Secky",
+    "artistId": 1756161815,
+    "source": "Client-supplied attachment: My name - secky.jpeg; replaces the Apple catalogue cover at the explicit user request.",
+    "file": "src/assets/releases/my-name.jpg"
+  },
+  {
+    "id": "1888957592",
+    "title": "Celebration in the air (FIFA World Cup 2026) (feat. FIFA SOUND) - Single",
+    "artist": "Secky",
+    "artistId": 1756161815,
+    "source": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ad/62/3d/ad623dfb-eaeb-7710-8efa-2f43dd324fb6/artwork.jpg/800x800bb.jpg",
+    "file": "src/assets/releases/celebration-in-the-air.jpg"
+  },
+  {
+    "id": "1891233342",
+    "title": "Letter to my wife (Redux) - Single",
+    "artist": "Secky",
+    "artistId": 1756161815,
+    "source": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3a/b7/72/3ab772a3-4d20-9119-ab1b-6af2c9b54f1d/artwork.jpg/800x800bb.jpg",
+    "file": "src/assets/releases/letter-to-my-wife-redux.jpg"
+  },
+  {
+    "id": "1843594841",
+    "title": "Black - Single",
+    "artist": "Secky",
+    "artistId": 1756161815,
+    "source": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3e/a1/e1/3ea1e1a1-bccb-8e50-15f4-c13cd8fcf03d/artwork.jpg/800x800bb.jpg",
+    "file": "src/assets/releases/black.jpg"
+  },
+  {
+    "id": "1756520071",
+    "title": "Infatuation - EP",
+    "artist": "Secky",
+    "artistId": 1756161815,
+    "source": "Client-supplied cover attachment; HyperFollow cover identity confirmed against the linked Spotify release page.",
+    "file": "src/assets/releases/infatuation.jpg"
+  },
+  {
+    "id": "1858948120",
+    "title": "Lagos 2 London - EP",
+    "artist": "Yeye Boiz",
+    "source": "Client-supplied cover attachment; HyperFollow cover identity confirmed against the linked Spotify release page, which credits Secky on five tracks.",
+    "file": "src/assets/releases/lagos-2-london.jpg"
+  }
 ]

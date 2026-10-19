@@ -27,8 +27,6 @@ export interface ArtistContent {
   fullName: string;
   pageTitle: string;
   metaDescription: string;
-  tagline?: string;
-  introduction: string;
   supportingText?: string;
   motto?: string;
   heroImage?: ArtistImage;
@@ -55,7 +53,6 @@ export const artist: ArtistContent = {
   fullName: 'Success Enwerem Chimezie KingsleY',
   pageTitle: 'SECKY | Official Website',
   metaDescription: 'Discover SECKY, a Nigerian Afrobeat and pop artist based in the United Kingdom. Explore his music and listen on Spotify and Apple Music.',
-  introduction: 'Nigerian roots. Global rhythms.',
   motto: 'Welcome to Arusi’Nation! Become an ARUSINATOR & embrace Arusinthesis!',
   supportingText: 'A Nigerian Afrobeat and pop artist based in the United Kingdom, SECKY brings vibrant rhythms, heartfelt storytelling, and uplifting energy to his music.',
   heroImage: {
@@ -72,7 +69,7 @@ export const artist: ArtistContent = {
     alt: 'SECKY beside a brick wall outdoors, wearing a white shirt and colourful neck scarf',
     width: 1080, height: 720,
   },
-  aboutHeading: 'About SECKY',
+  aboutHeading: 'INFO',
   shortBio: 'SECKY is a Nigerian Afrobeat and pop artist based in the United Kingdom. Blending African influences with global rhythms, he creates vibrant, uplifting music that celebrates creativity, identity, and unity.',
   biography: [
     'Secky (Success Enwerem Chimezie KingsleY) is a Nigerian Afrobeat and pop artist based in the United Kingdom. His stage name, SECKY, is derived from his initials. Known for his vibrant, uplifting sound, Secky blends African influences with global rhythms, delivering heartfelt storytelling and music that celebrates creativity, identity and unity.',

@@ -10,8 +10,9 @@
     "dev": "vite --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
     "check:deployment": "node scripts/check-deployment.mjs",
-    "build": "npm run typecheck && npm run test:releases && vite build",
+    "build": "npm run typecheck && npm run test:releases && npm run test:videos && vite build",
     "test:releases": "node --test scripts/releases.test.mjs",
+    "test:videos": "node --test scripts/videos.test.mjs",
     "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {

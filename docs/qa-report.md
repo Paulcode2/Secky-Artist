@@ -1,20 +1,21 @@
 # Release candidate QA
 
-Completed 19 October 2026. Status: ready for client review, **not approved for public launch**. No deployment performed. Review the current application at http://127.0.0.1:4173/ while the production preview is running, or run `npm run build` and `npm run preview`. `preview/index.html` is an archived design study, not this candidate.
+Initial release-candidate QA completed 19 October 2026; current update recorded at the end of this report. Status: ready for client review, **not approved for public launch**. No deployment performed. Review the current application at http://127.0.0.1:4173/ while the production preview is running, or run `npm run build` and `npm run preview`. `preview/index.html` is an archived design study, not this candidate.
 
 ## Scope and visible content
 
 | Section | Audit result |
 | --- | --- |
-| Header | SECKY text identity; Music, About and Contact anchors; accessible mobile disclosure. |
-| Hero | Supplied name, introduction, supporting text and studio portrait; Listen Now targets Music because no feature is approved. Exact supplied Spotify/Apple Music profile URLs retained. |
-| Featured | Functional route to catalogue remains in the reserved section. Client must select a release before the agreed featured presentation is complete. |
-| Music | Four real, previously platform-identified singles; long titles wrap; dates descend; release-specific links only. All four covers remain unavailable and are visibly labelled. No fictional replacements. |
-| About | Supplied short biography and full two-paragraph biography, with supplied outdoor photograph. Full-name spelling retained. Award/FIFA claims remain client copy pending supporting evidence. |
-| Contact | Booking email absent; honest unavailable state, no fake form or action. Removed the unsupported promise that details would be available “soon”. Streaming profiles available; social links omitted. |
+| Header | SECKY text identity; MP3, MP4, INFO and Contact anchors; accessible mobile disclosure. |
+| Hero | SECKY-only heading with no trailing period or former tagline; supporting text, studio portrait, Listen Now and exact supplied streaming profiles retained. |
+| Featured | Functional route to MP3 catalogue remains in the featured-release section. Client must select a release before the agreed featured presentation is complete. |
+| MP3 | Six platform-identified releases; existing date-descending cards remain unchanged and the two client-requested EPs are appended last with supplied art and Spotify/Apple Music buttons. |
+| MP4 | Four client-supplied YouTube videos with metadata titles; 16:9 click-to-load previews, privacy-enhanced player and Watch on YouTube fallback. Playback/availability unverified. |
+| INFO | Supplied full two-paragraph biography and outdoor photograph. Full-name spelling retained. Award/FIFA claims remain client copy pending supporting evidence. |
+| Contact | Supplied booking email and streaming profiles; social links omitted. Email delivery remains untested. |
 | Footer | SECKY and supplied streaming profiles. Copyright owner and social destinations still need client confirmation. |
 
-No new features, excluded sections, embedded players, autoplay, backend or account functionality introduced. Sample artist copy is absent from the current page. Visible cover-unavailable and booking-unavailable states are launch blockers, not finished client content.
+The initial QA run introduced no new sections or players. The later client-approved update below adds the MP4 YouTube section; no autoplay, backend or account functionality was introduced. Sample artist copy is absent. Featured release selection, publication approval and other listed client confirmations remain outstanding.
 
 ## Changes and measured results
 
@@ -59,7 +60,7 @@ Rechecked through browsing on 18 October during this phase. Tool responses can b
 
 ## Launch blockers and client review
 
-1. Supply authorised covers for all four releases; approve the partial catalogue and select the featured release. Until then the artwork-led/featured scope remains content-incomplete.
+1. Confirm publication rights and required credits for the six integrated release covers, approve the partial catalogue and select the featured release. Until then the artwork-led/featured scope remains content-incomplete.
 2. Supply a public booking email and verify receipt, or explicitly approve a change to the booking requirement. Supply social links or confirm intentional omission; confirm copyright attribution.
 3. Confirm `Success Enwerem Chimezie KingsleY`, biography accuracy, award year/category/evidence and precise FIFA-profile claim. No endorsement or additional achievement has been inferred.
 4. Review the colours/type, portrait crops, S-dot favicon, required image credits and publication rights. Confirm the final content for publication.
@@ -83,3 +84,30 @@ Production build, TypeScript, all eight tests and browser checks at 320/390/768/
 ## Booking email and link behaviour - 19 October 2026
 
 Added the supplied public booking address Info@seckyworldwide.com as a mailto link. This supersedes previous missing-booking-email notes; actual mailbox delivery has not been tested. All external HTTP(S) links now open a new tab with noopener noreferrer through the shared Link component, including profiles, release destinations and chooser options. Internal anchors and mailto links retain their normal behaviour. Deployment remains on hold.
+
+## Approved MP3 / MP4 / INFO update — 19 October 2026
+
+The current desktop and mobile navigation order is MP3 → MP4 → INFO → Contact. The existing `#music` and `#about` section IDs remain unchanged; the new `#mp4` section is between them. The hero h1 now contains only “SECKY”, without a trailing period or the retired tagline. Existing release artwork, platform destinations, artist biography, both portraits, supporting copy, motto and listening behavior remain.
+
+Four client-supplied YouTube links are in `src/content/videos.ts`, with titles read from public YouTube metadata. The site validates supported HTTPS URL forms and builds embeds from video IDs only. At rest no iframe is present; the visitor must activate the centered play button. Activated players use `youtube-nocookie.com` with autoplay, have a descriptive title and fullscreen support, and retain a direct Watch on YouTube fallback. Previews are 16:9; generated thumbnails use maxres and fall back to hq. No separate approved thumbnail assets were supplied; no uploads, self-hosted MP4s, backend or Tours section were added.
+
+| Verification | Result |
+| --- | --- |
+| `npm.cmd run build` | Passed strict TypeScript, 8 release tests, 5 video tests and Vite production build. |
+| `npm.cmd run check:deployment` | Passed metadata, lockfile, local assets and allowed static artifact check; no video files were emitted. |
+| `node scripts/check-foundation.mjs` | Passed desktop/mobile labels, anchors, section order, keyboard navigation, sticky offsets, reduced motion, release checks, video browser checks and five viewport widths (320/390/768/1440/1920px) without horizontal overflow. |
+| Browser smoke | Confirmed no iframe before activation; one privacy-enhanced iframe afterward with title/fullscreen; secure canonical fallback; 16:9 layout; mobile nav and hero sizing; no 390px overflow. |
+| YouTube playback | Not verified: the browser environment failed to connect to the YouTube iframe endpoint. Live availability/region and playback remain client-review checks. |
+
+All four supplied links are included; no URLs are missing. YouTube metadata provided the titles. No approved thumbnails were supplied, so the cards use generated YouTube previews with fallback behavior. Tours remain excluded. This update supersedes earlier report statements that no Videos section existed.
+
+## Client-requested MP3 additions — 19 October 2026
+
+The MP3 catalogue now has six cards. Infatuation and Lagos 2 London are the final two in that order, each with client-supplied cover artwork and two release-specific platform links. Spotify confirms Infatuation by Secky (EP, 15 July 2024) and Lagos 2 London by Yeye Boiz (EP, 12 December 2025); the latter credits Secky on five tracks. HyperFollow supplied the corresponding Apple Music destinations; direct Apple Music page fetches returned errors. Do not treat those fetch failures as broken links, but recheck regional availability before launch.
+
+| Check | Result |
+| --- | --- |
+| `npm.cmd run build` | Passed strict TypeScript, 9 release tests, 5 video tests and the Vite production build. |
+| `npm.cmd run check:deployment` | Passed; both supplied covers are local build assets and permitted static files. |
+| Local browser | All six cover images loaded; both new cards expose Spotify and Apple Music links. Confirmed one-column mobile and three-column desktop catalogue layouts without horizontal overflow. |
+| Foundation regression | Passed at 320/390/768/1440/1920px; six catalogue cards, final-two order, local covers, video checks and release fixtures all passed without runtime errors. |

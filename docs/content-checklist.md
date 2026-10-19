@@ -7,23 +7,29 @@ Updated: 19 October 2026, release-candidate review. SECKY's supplied identity, b
 | Status | Item | What to supply or confirm |
 | --- | --- | --- |
 | Integrated | Stage name | SECKY used in header, hero and footer. Full name preserved as Success Enwerem Chimezie KingsleY; confirm final capital Y. |
-| Integrated | Short introduction | “Nigerian roots. Global rhythms.” plus the exact supplied supporting paragraph. |
-| Integrated | Short biography | Exact supplied copy, used as the compact About introduction. |
+| Updated | Hero heading and introduction | Hero displays only SECKY as its heading. The former “Nigerian roots. Global rhythms.” tagline is removed; the supplied supporting paragraph remains. |
+| Integrated | Short biography | Exact supplied copy remains in the content record; the INFO section uses the full biography. |
 | Integrated; evidence pending | Full biography | Both supplied paragraphs retained verbatim. Treat award/FIFA statements as client-provided copy; see confirmations below. |
 | Integrated | Hero photograph | Client-supplied monochrome studio portrait (`15.47.06.jpeg`), with face-safe responsive framing. |
 | Missing | Brand direction | Existing brand colours and typography preferences, or agreement that the developer may propose them for approval. Include font licensing constraints. The proposed ivory/ink/rust palette and Georgia/Arial typography await approval. |
 | Missing | Featured release selection | Identify the release to lead the page and whether it is already released or forthcoming. |
-| Partially integrated | Release catalogue | Four singles with platform-sourced titles, dates and release links. Complete canonical catalogue, final client review and approved artwork still needed. See `content-sources.md`. |
+| Partially integrated | Release catalogue | Six releases with titles, dates, covers and release-specific links. The two newly added EPs have client-supplied covers and direct Spotify/Apple Music links. Canonical catalogue confirmation and final client review remain needed; see `content-sources.md`. |
 | Missing | Social profile URLs | Exact official profile destinations to include; explicitly confirm if none should appear. |
 | Integrated | Streaming profile URLs | Exact supplied Spotify and Apple Music GB URLs. Apple GB direct fetch was unavailable; identity corroborated via matching US artist ID. Kept separate from release links. |
-| Missing | Public booking/management email | Address authorised for public display, its purpose, and confirmation it can receive enquiries. Do not supply private account credentials. |
+| Integrated | MP4 YouTube links | Four exact client-supplied YouTube links are in `src/content/videos.ts`; titles came from YouTube metadata. See `content-sources.md`. Playback availability remains untested. |
+| Automated | Video thumbnails | No separate assets were supplied; previews derive maxres/hq YouTube thumbnails from the verified video IDs. Confirm each thumbnail and video association during client review. |
+| Integrated | Public booking/management email | Supplied address `Info@seckyworldwide.com` is linked via mailto; mailbox delivery and purpose confirmation remain untested. Do not supply private account credentials. |
 | Missing | Publication approval and attribution | Confirm copy accuracy, image/artwork usage rights, mandatory credits and the correct copyright attribution. |
 
 Profile categories are part of the requested footer. If official profiles do not exist, record that absence and agree to omit those links; do not invent destinations.
 
+## MP3 update — 19 October 2026
+
+The client-requested Infatuation and Lagos 2 London EPs are now the final two catalogue cards, in that order. Client-supplied square covers and direct Spotify/Apple Music album URLs are integrated. HyperFollow and Spotify metadata confirm the releases; the exact title, Yeye Boiz artist credit, dates and source limitations are recorded in `content-sources.md`. Final client approval, live regional availability, publication rights/credits and featured selection remain review items.
+
 ## Required for each displayed release
 
-My Name, Celebration in the air, Letter to my wife (Redux), and Black have titles/types/dates and release-specific URLs integrated. None is featured. No cover has been supplied or authorised. Indexed metadata verification does not replace checking live destinations before launch; details are in `content-sources.md`.
+My Name, Celebration in the air, Letter to my wife (Redux), Black, Infatuation, and Lagos 2 London have titles/types/dates, artwork and release-specific URLs integrated. None is featured. The initial four covers came from Apple Music catalogue sources; the two recent covers were client supplied. The canonical catalogue and client review remain pending. Indexed metadata verification does not replace checking live destinations before launch; details are in `content-sources.md`.
 
 - [ ] Exact release title.
 - [ ] Release type: single, EP, album, or another approved category.
@@ -34,6 +40,14 @@ My Name, Celebration in the air, Letter to my wife (Redux), and Black have title
 - [ ] Availability status if forthcoming; do not imply a release is already available. A forthcoming release without a listening destination needs a content decision before it can satisfy the current featured-release requirements.
 
 The developer will assign stable IDs, create accurate image descriptions from supplied assets, optimise exports, and validate structured data. Client-facing copy must be approved rather than inferred from file names or unrelated online profiles.
+
+## MP4 video content
+
+- [x] Four supplied YouTube URLs added to `src/content/videos.ts` with stable IDs.
+- [x] Titles taken from YouTube's public metadata; source links and extracted IDs are recorded in `content-sources.md`.
+- [x] YouTube URL allowlist and ID validation implemented; generated embeds use `youtube-nocookie.com` only after visitor activation.
+- [ ] Supply/approve thumbnails if desired; none are currently used.
+- [ ] Confirm video ownership/association with SECKY and test live playback/availability before launch. Metadata retrieval is not a playback test.
 
 ## Optional content
 
@@ -56,13 +70,13 @@ Client confirmations before launch:
 - Supply the Top Naija Music Awards year/category and official evidence. This claim is client copy, not independently verified.
 - Supply links supporting the precise claim about appearing on FIFA's official Spotify and Apple Music pages. Release collaborator metadata does not independently establish official endorsement or account ownership. No ambassador/partner/performer/award claim has been added.
 - Choose the featured release; confirm the partial catalogue and resolve differing platform titles/types for other entries before adding them.
-- Artist photographs are now supplied and integrated. Supply release cover artwork and any required photographer credit wording. Existing stock photos remain excluded from the application.
+- Artist photographs and all six release covers are integrated. Supply any required artist/photographer credit wording; existing stock photos remain excluded from the application.
 - Supply a public booking/management email, official social handles if any, copyright attribution and brand approval.
 - Confirm live availability of the supplied Apple Music GB profile and cached/indexed release destinations. Final domain, canonical URL and sharing image remain pending. Review the derived S-dot favicon and see qa-report.md for launch requirements.
 
 Supply copy and release data in a document or spreadsheet with files clearly matched to the artist/release. Provide original assets rather than screenshots where possible. Record which items are approved, require edits, or are intentionally unavailable. The developer then transfers approved values into the structured files proposed in `project-scope.md`.
 
-Do not invent achievements, reviews, streaming figures, collaborators, client information, email addresses or URLs. Missing required material remains recorded here until resolved. Internal draft notes may track missing items; public placeholders and broken links are not a launch solution. Tours and Videos content is neither requested nor included.
+Do not invent achievements, reviews, streaming figures, collaborators, client information, email addresses or URLs. Missing required material remains recorded here until resolved. Internal draft notes may track missing items; public placeholders and broken links are not a launch solution. The client supplied the four YouTube URLs; no other videos are added. Tours remain excluded. Video uploads, self-hosted MP4 files and backend functionality are not part of the approved MP4 feature.
 
 ## Artwork and About update - 19 October 2026
 

@@ -3,4 +3,5 @@ export { createElement } from 'react';
 export { createRoot } from 'react-dom/client';
 export { Contact } from '../src/components/ArtistSections';
 export { ReleaseSections } from '../src/components/Releases';
+export { VideoSection } from '../src/components/Videos';
 export { artist } from '../src/content/artist';

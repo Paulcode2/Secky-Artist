@@ -32,7 +32,7 @@ These captures are review artifacts, not separate page implementations. Open at 
 6. Contact: booking-email and social-link positions clearly marked as pending. Replace with a public `mailto:` address and approved labelled links once supplied.
 7. Footer: temporary artist name, copyright-owner status and streaming-profile placement. Verified profile links must replace the pending text before launch.
 
-Only the agreed seven sections appear. No additional content categories or services have been added.
+The seven-section composition above describes the historical standalone study only; the approved production application's current section order is documented below.
 
 ## Responsive rules
 
@@ -83,6 +83,10 @@ Temporary images were downloaded from Unsplash's image CDN for local review on 1
 - Atmosphere: `https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=1600&q=85&fit=crop`
 
 These are not approved client assets. Photographer credits and launch-use clearance have not been established; replace both before publication. No reference-site asset was downloaded. Artwork studies are original CSS shapes, not genuine release covers.
+
+## Approved site update — 19 October 2026
+
+The current application retains this editorial ivory/ink/rust direction and existing component styling. Its navigation now reads MP3 → MP4 → INFO → Contact, retaining `#music`, `#about` and `#contact` and adding `#mp4`. The hero heading is SECKY alone, larger and period-free. MP4 uses the same page tokens, 16:9 preview ratios, and client-supplied YouTube links; the iframe appears only after a Play video activation. Tours remain excluded. This supersedes the earlier three-link study notes above; the separate `preview/` study itself remains historical and unchanged.
 
 ## Verification and limits
 

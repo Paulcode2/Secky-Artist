@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { ArtistContent } from '../content/artist';
 import { Button, Container, Link } from './ui';
 
-const navigation = [{ id: 'music', label: 'Music' }, { id: 'about', label: 'About' }, { id: 'contact', label: 'Contact' }];
+const navigation = [{ id: 'music', label: 'MP3' }, { id: 'mp4', label: 'MP4' }, { id: 'about', label: 'INFO' }, { id: 'contact', label: 'Contact' }];
 
 export function Header({ artist }: { artist: ArtistContent }) {
   const [open, setOpen] = useState(false);

@@ -4,7 +4,7 @@ Updated: 19 October 2026.
 
 ## Current status
 
-Phases 1–4 and content integration are complete. SECKY's identity, biographies, streaming profiles, four platform-identified singles and supplied hero/About photographs are integrated. No release is featured; cover artwork and contact details remain pending. The original `preview/` study is archived separately. Release-candidate QA and image/metadata preparation are complete; see qa-report.md for measured results and unresolved launch blockers. Ready for client review, not public launch. Nothing has been deployed.
+Phases 1–4 and content integration are complete. SECKY's identity, biographies, streaming profiles, six platform-identified releases with cover artwork, and supplied hero/About photographs are integrated. No release is featured; final catalogue and publication approvals remain pending. The original `preview/` study is archived separately. Release-candidate QA and image/metadata preparation are complete; see qa-report.md for measured results and unresolved launch blockers. Ready for client review, not public launch. Nothing has been deployed.
 
 ## Completed in the planning phase
 
@@ -106,9 +106,9 @@ Phases 1–4 and content integration are complete. SECKY's identity, biographies
 
 | Stage | Status | Completion condition |
 | --- | --- | --- |
-| Content collection | Identity/copy/profiles/photos integrated | Awaiting covers, contacts, social links, full catalogue and confirmations in the checklist. |
+| Content collection | Identity/copy/profiles/photos and six releases integrated | Awaiting canonical catalogue confirmation and remaining confirmations in the checklist. |
 | Technical setup | Application tooling complete | Hosting selection remains pending. |
-| Content preparation | Partial catalogue and portraits integrated | Cover artwork and remaining destination/claim checks pending. |
+| Content preparation | Partial catalogue and portraits/covers integrated | Featured selection, publication rights/credits and remaining destination/claim checks pending. |
 | Interface implementation | Core and release functionality complete | Approved content integration and review remain. |
 | Verification | Foundation and release checks complete | Final content, external links, screen-reader operation, cross-browser layout and delivery checked. |
 | Client review and delivery | Not started | Review feedback resolved and delivery undertaken in a later phase. |
@@ -174,3 +174,36 @@ Existing Celebration Spotify and all Apple Music destinations retained. No playb
 ## Client-supplied Spotify track links
 
 The client supplied track links for My Name (4E99PWSUTRKyPK97TZkuNF), Letter to my wife (Redux) (3qrb8LnqPLEDCxRoKWLph8) and Black (0H8uVUagukefzhUNp2BqBH). My Name and Black already matched. Replaced the Redux album destination with the supplied direct track; Spotify page title and SECKY artist ID were confirmed. Omitted share-tracking query parameters while preserving each track ID. Playback was not tested.
+
+## Client-requested MP3 / MP4 / INFO update — 19 October 2026
+
+- Updated desktop/mobile section links in `src/components/Header.tsx` to MP3 → MP4 → INFO → Contact. Kept `#music`, `#about`, and `#contact`; inserted `#mp4` between the existing music catalogue and biography. Tours remain excluded.
+- Changed the catalogue heading/label to MP3 and About heading to INFO while preserving releases, art, links, biography/photos, IDs, and listening behavior. Removed the old hero tagline and the optional tagline/introduction data fields; the hero now renders SECKY alone with no decorative period. Supporting copy, motto, portrait, streams and CTA remain.
+- Added `src/content/videos.ts` with four exact client-supplied YouTube links and titles retrieved from YouTube metadata. `src/lib/videos.ts` validates HTTPS watch, youtu.be and Shorts forms, extracts only valid 11-character IDs, rejects duplicate/invalid entries, and constructs canonical youtube-nocookie embeds and Watch links. `src/components/Videos.tsx` renders responsive 16:9 video cards, an accessible Play button, click-to-load fullscreen-capable iframe, fallback link and “Videos coming soon” empty state. No thumbnails, uploads, self-hosted video or backend were added.
+- Added five Node video-content tests and browser regression checks for nav/section ordering, anchor offsets, embed deferral, privacy host, iframe title/fullscreen, fallback link, 16:9 layout and empty state. Existing release and profile checks remain intact.
+- Updated project scope, checklist, source register, release maintenance, README and this progress log to supersede the initial exclusion of Videos and document the new labels/maintenance process. Historical planning/QA notes are retained with explicit superseding notes.
+
+### Verification for this update
+
+- `npm.cmd run build`: passed TypeScript, all 8 release tests, all 5 video tests, and the Vite production build.
+- `npm.cmd run check:deployment`: passed lockfile, metadata, local asset and deployment file-type checks; no MP4 files were emitted.
+- `node scripts/check-foundation.mjs`: passed at 320/390/768/1440/1920 CSS px with no horizontal overflow, valid anchors, images, keyboard menu behavior, sticky target clearance, reduced motion, existing release interactions, and video browser checks. The section order and accessible labels are verified.
+- Browser verification confirmed four 16:9 previews, zero iframes before activation, one youtube-nocookie iframe after activating a card, its descriptive title and fullscreen support, the canonical Watch fallback, mobile navigation and the 390px hero fitting without overflow. The browser could not connect to YouTube's embed endpoint, so video playback/current availability was not tested.
+- All four provided URLs are included; there are no missing YouTube links. No approved thumbnail assets were supplied; the earlier placeholder preview was subsequently replaced with thumbnails derived dynamically from each video ID.
+
+## YouTube thumbnail and play-control update — 19 October 2026
+
+- Changed only the MP4 thumbnail/play control: thumbnail URLs are derived from validated video IDs and try `maxresdefault.jpg`, falling back to `hqdefault.jpg` on image error or the 120×90 placeholder.
+- Added lazy-loaded images with video-title alt text, centered translucent circular SVG play control, 72px desktop / 56px mobile sizing, hover/focus overlay, reduced-motion support and a full-preview accessible button.
+- Preserved the 16:9 frame, grid, typography, title and YouTube fallback link. Iframe still appears only after activation and now uses `autoplay=1` on `youtube-nocookie.com`.
+- `npm.cmd run build` and `npm.cmd run check:deployment` passed. Browser checks confirmed both requested maxres thumbnails loaded at 1280×720; the play control is centered, both requested videos produce the expected autoplay embed URLs on click/keyboard activation, and an additional card uses the hq fallback. Full browser-foundation checks pass at 320/390/768/1440/1920px.
+- Browser testing confirms embed creation but not actual playback rendering; the external player still depends on YouTube availability/network access.
+
+## Client-requested MP3 additions — 19 October 2026
+
+- Copied the supplied square cover attachments to `src/assets/releases/infatuation.jpg` and `lagos-2-london.jpg`; Vite imports them into the same artwork treatment used by existing cards.
+- Added Infatuation (EP, 15 July 2024) and Lagos 2 London (EP, 12 December 2025) with their client-supplied Spotify/Apple Music album destinations and client-ordered catalogue positions 1 then 2. Spotify pages verify title/date; HyperFollow provides the Apple Music links. Spotify identifies Lagos 2 London as a Yeye Boiz EP and credits Secky on five tracks.
+- Kept the prior four releases unchanged. Catalogue sorting still uses newest-first chronology for existing releases, then places the two ordered additions last.
+- Updated release unit/browser checks, artwork provenance, README and content/release/QA documentation.
+- `npm.cmd run build` passed TypeScript, 9 release tests, 5 video tests and production output. `npm.cmd run check:deployment` passed. The local browser showed all six artwork images, two platform links on each new card, responsive one-/three-column layouts, and no horizontal overflow.
+- Apple Music direct page retrieval returned a server error; the links are confirmed on the supplied HyperFollow pages. Live regional access/playback and final rights/credit approval remain review items. No release was marked featured.

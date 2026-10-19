@@ -51,10 +51,10 @@ export function ReleaseSections({ entries = releases, profiles = [] }: { entries
       {featured ? <><ReleaseArtwork key={`${featured.id}-${featured.artwork?.src}`} release={featured} prominent /><div className="feature-copy">
         <SectionHeading id="latest-title" eyebrow="01 / Featured release">{featured.title}</SectionHeading>
         <ReleaseMeta release={featured} today={today} /><ListeningControl release={featured} today={today} />
-      </div></> : <><SectionHeading id="latest-title" eyebrow="01 / Featured release">Explore the music</SectionHeading><Link href="#music">Browse releases and listening platforms <ArrowIcon /></Link></>}
+      </div></> : <><SectionHeading id="latest-title" eyebrow="01 / Featured release">Explore MP3</SectionHeading><Link href="#music">Browse the MP3 catalogue <ArrowIcon /></Link></>}
     </Container></section>
     <section id="music" className="section" tabIndex={-1} aria-labelledby="music-title"><Container>
-      <SectionHeading id="music-title" eyebrow="02 / The catalogue">Music<span className="dot">.</span></SectionHeading>
+      <SectionHeading id="music-title" eyebrow="02 / The catalogue">MP3</SectionHeading>
       {profiles.length > 0 && <div className="music-profiles"><p>Explore the full artist catalogue</p><ProfileLinks profiles={profiles} label="Artist streaming profiles" /></div>}
       {catalogue.length ? <div className="release-grid">{catalogue.map(release => <article className="release" key={release.id}>
         <ReleaseArtwork release={release} /><ReleaseMeta release={release} today={today} />

@@ -2,6 +2,8 @@ const myNameArtwork = new URL('../assets/releases/my-name.jpg', import.meta.url)
 const celebrationArtwork = new URL('../assets/releases/celebration-in-the-air.jpg', import.meta.url).href;
 const letterArtwork = new URL('../assets/releases/letter-to-my-wife-redux.jpg', import.meta.url).href;
 const blackArtwork = new URL('../assets/releases/black.jpg', import.meta.url).href;
+const infatuationArtwork = new URL('../assets/releases/infatuation.jpg', import.meta.url).href;
+const lagos2LondonArtwork = new URL('../assets/releases/lagos-2-london.jpg', import.meta.url).href;
 
 export interface ReleasePlatform {
   name: string;
@@ -16,6 +18,8 @@ export interface Release {
   releaseDate?: string;
   artwork?: { src: string; alt: string };
   featured: boolean;
+  /** Optional editorial order after the date-sorted catalogue entries. */
+  catalogueOrder?: number;
   smartLink?: string;
   /** A confirmed pre-save destination, never inferred from a listening link. */
   preSaveUrl?: string;
@@ -23,8 +27,8 @@ export interface Release {
 }
 
 // Verified platform metadata and release-specific destinations; see docs/content-sources.md.
-// Official covers matched by Apple collection and artist ID at the user's request.
-// Source register: docs/release-artwork-sources.json. Featured selection remains pending.
+// Covers are official or client-supplied as recorded in docs/release-artwork-sources.json.
+// Featured selection remains pending.
 export const releases: Release[] = [
   {
     id: 'my-name', title: 'My Name (feat. I’ll Take You There Choir)', type: 'single',
@@ -51,5 +55,21 @@ export const releases: Release[] = [
     id: 'black', title: 'Black', type: 'single', releaseDate: '2025-10-03', featured: false,
     artwork: { src: blackArtwork, alt: 'Cover artwork for Black by SECKY' },
     platforms: [{ name: 'Spotify', url: 'https://open.spotify.com/track/0H8uVUagukefzhUNp2BqBH' }, { name: 'Apple Music', url: 'https://music.apple.com/us/album/black-single/1843594841' }],
+  },
+  {
+    id: 'infatuation', title: 'Infatuation', type: 'EP', releaseDate: '2024-07-15', featured: false, catalogueOrder: 1,
+    artwork: { src: infatuationArtwork, alt: 'Cover artwork for Infatuation EP by SECKY' },
+    platforms: [
+      { name: 'Spotify', url: 'https://open.spotify.com/album/4KLrZlZcKbK55f8KbxXshk' },
+      { name: 'Apple Music', url: 'https://music.apple.com/us/album/infatuation-ep/1756520071?uo=4' },
+    ],
+  },
+  {
+    id: 'lagos-2-london', title: 'Lagos 2 London', type: 'EP', releaseDate: '2025-12-12', featured: false, catalogueOrder: 2,
+    artwork: { src: lagos2LondonArtwork, alt: 'Cover artwork for Lagos 2 London EP by Yeye Boiz, featuring Secky' },
+    platforms: [
+      { name: 'Spotify', url: 'https://open.spotify.com/album/0mMxLf1UH34ikskq84otkg' },
+      { name: 'Apple Music', url: 'https://music.apple.com/us/album/lagos-2-london-ep/1858948120?uo=4' },
+    ],
   },
 ];

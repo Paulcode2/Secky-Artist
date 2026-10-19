@@ -1,0 +1,129 @@
+.videoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(2rem, 5vw, 4rem) var(--space-4);
+}
+
+.videoCard {
+  min-width: 0;
+}
+
+.videoPreview {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: var(--dark);
+}
+
+.videoPreview iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.videoLoad:global(.button) {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--paper);
+  cursor: pointer;
+}
+
+.videoThumbnail {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.videoLoad::before {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: rgb(0 0 0 / 0);
+  content: '';
+  transition: background-color 200ms ease;
+}
+
+.videoPlayControl {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: 72px;
+  height: 72px;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  border: 1.5px solid rgb(255 255 255 / 70%);
+  border-radius: 50%;
+  background: rgb(255 255 255 / 18%);
+  color: #fff;
+  backdrop-filter: blur(6px);
+  transition: transform 200ms ease, background-color 200ms ease;
+}
+
+.videoPlayControl svg {
+  transform: translateX(2px);
+}
+
+.videoLoad:hover::before,
+.videoLoad:focus-visible::before {
+  background: rgb(0 0 0 / 25%);
+}
+
+.videoLoad:hover .videoPlayControl,
+.videoLoad:focus-visible .videoPlayControl {
+  transform: translate(-50%, -50%) scale(1.08);
+  background: rgb(255 255 255 / 30%);
+}
+
+.videoCard h3 {
+  margin-top: 1.25rem;
+  font-size: clamp(1.45rem, 2.5vw, 2rem);
+}
+
+.videoWatchLink {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  min-height: 44px;
+  margin-top: .75rem;
+}
+
+.videoEmpty {
+  max-width: 36ch;
+  padding-block: 1.5rem;
+  border-top: var(--border);
+  font: clamp(1.75rem, 4vw, 2.75rem)/1.2 var(--font-display);
+}
+
+@media (max-width: 639px) {
+  .videoGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .videoPlayControl {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .videoLoad::before,
+  .videoPlayControl {
+    transition: none;
+  }
+}
