@@ -8,6 +8,7 @@ export function Hero({ artist, listeningTarget = '#music' }: { artist: ArtistCon
       <h1 id="artist-name">{artist.stageName}<span className="dot">.</span></h1>
       <p className="intro">{artist.introduction}</p>
       {artist.supportingText && <p className="hero-support">{artist.supportingText}</p>}
+      {artist.motto && <p className="hero-motto">{artist.motto}</p>}
       {artist.isDraft && <p className="draft">Temporary artist name and introduction — approval pending.</p>}
       <ButtonLink href={listeningTarget}>Listen Now <span aria-hidden="true">↗</span></ButtonLink>
       <ProfileLinks profiles={artist.streamingProfiles} label="Listen to the artist" />

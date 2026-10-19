@@ -150,3 +150,7 @@ Production build, TypeScript, all eight tests and browser checks at 320/390/768/
 ## Booking email and link behaviour - 19 October 2026
 
 Added the supplied public booking address Info@seckyworldwide.com as a mailto link. This supersedes previous missing-booking-email notes; actual mailbox delivery has not been tested. All external HTTP(S) links now open a new tab with noopener noreferrer through the shared Link component, including profiles, release destinations and chooser options. Internal anchors and mailto links retain their normal behaviour. Deployment remains on hold.
+
+## Client motto - 19 October 2026
+
+Added the exact client-supplied welcome motto beneath the hero introduction, with a restrained rust accent and vertical rule. Text lives in the optional `motto` field in `src/content/artist.ts`; no sign-up action or new section was introduced. Production build, TypeScript and all eight existing release tests passed. Deployment remains on hold.

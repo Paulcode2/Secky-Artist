@@ -29,6 +29,7 @@ export interface ArtistContent {
   tagline?: string;
   introduction: string;
   supportingText?: string;
+  motto?: string;
   heroImage?: ArtistImage;
   logo?: ArtistImage;
   aboutHeading: string;
@@ -45,7 +46,7 @@ export interface ArtistContent {
 
 // Identity and biography are client-provided copy, not independently verified claims.
 // Preserve the supplied full-name spelling pending confirmation of the final capital Y.
-// Photographs supplied by the client; booking address and social handles remain absent.
+// Photographs and booking address supplied by the client; social handles remain absent.
 export const artist: ArtistContent = {
   isDraft: false,
   stageName: 'SECKY',
@@ -53,6 +54,7 @@ export const artist: ArtistContent = {
   pageTitle: 'SECKY | Official Website',
   metaDescription: 'Discover SECKY, a Nigerian Afrobeat and pop artist based in the United Kingdom. Explore his music and listen on Spotify and Apple Music.',
   introduction: 'Nigerian roots. Global rhythms.',
+  motto: 'Welcome to Arusi’Nation! Become an ARUSINATOR & embrace Arusinthesis!',
   supportingText: 'A Nigerian Afrobeat and pop artist based in the United Kingdom, SECKY brings vibrant rhythms, heartfelt storytelling, and uplifting energy to his music.',
   heroImage: {
     src: studioPortrait,
