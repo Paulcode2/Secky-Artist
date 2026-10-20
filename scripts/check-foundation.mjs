@@ -43,6 +43,18 @@ try {
     await settle();
     const info = await evaluate(`({ width: innerWidth, scrollWidth: document.documentElement.scrollWidth, images: [...document.images].every(i => i.complete && i.naturalWidth), anchors: [...document.querySelectorAll('a[href^="#"]')].every(a => a.hash.length > 1 && document.getElementById(a.hash.slice(1))) })`);
     assert.ok(info.scrollWidth <= width); assert.ok(info.images); assert.ok(info.anchors); layouts.push(info);
+    if (width < 640) {
+      const footerLayout = await evaluate(`(() => {
+        const footer = document.querySelector('.footer-content');
+        const brand = footer.querySelector('.wordmark').getBoundingClientRect();
+        const socials = footer.querySelector('.footer-social-links').getBoundingClientRect();
+        return { direction: getComputedStyle(footer).flexDirection, justify: getComputedStyle(footer).justifyContent, brandLeft: brand.left, socialsLeft: socials.left, socialsRight: socials.right };
+      })()`);
+      assert.equal(footerLayout.direction, 'row');
+      assert.equal(footerLayout.justify, 'space-between');
+      assert.ok(footerLayout.brandLeft < footerLayout.socialsLeft);
+      assert.ok(footerLayout.socialsRight <= width);
+    }
     if (process.env.CAPTURE_CONTENT === '1' && [390, 1440].includes(width)) {
       await evaluate('window.scrollTo(0,0)'); await settle();
       const shot = await call('Page.captureScreenshot', { format: 'png', captureBeyondViewport: true });

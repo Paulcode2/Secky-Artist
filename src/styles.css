@@ -151,7 +151,7 @@ footer { display: block; padding: 0; }
   .navigation.is-open { display: flex; flex-direction: column; gap: .5rem; }
   .navigation a { width: 100%; }
   .catalogue-reservation { grid-template-columns: 1fr; }
-  .footer-content { flex-direction: column; align-items: flex-start; }
+  .footer-content { flex-wrap: nowrap; flex-direction: row; align-items: center; justify-content: space-between; gap: 1rem; }
 }
 
 .release-artwork { aspect-ratio: 1; width: 100%; background: #e7e2d7; }
