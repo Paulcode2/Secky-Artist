@@ -115,7 +115,7 @@ Phases 1–4 and content integration are complete. SECKY's identity, biographies
 
 ## Assumptions and unresolved inputs
 
-The English-language page remains developer-managed. Identity, hero copy, biographies and Spotify/Apple Music profiles are supplied; four releases have platform-backed metadata. Brand approval, complete catalogue/artwork, social handles, public booking email, copyright and featured selection remain outstanding. Confirm the full-name capitalisation and supply evidence for the award/FIFA wording. Hosting and domain remain undecided. Live destination access and final client approval remain launch requirements.
+The English-language page remains developer-managed. Identity, hero copy, biographies, Spotify/Apple Music profiles, Instagram/X URLs and six releases have platform-backed or client-supplied metadata. Additional social handles, brand approval, complete catalogue, public copyright attribution and featured selection remain outstanding. Confirm the full-name capitalisation and supply evidence for the award/FIFA wording. Hosting and domain remain undecided. Live destination access and final client approval remain launch requirements.
 
 See `content-checklist.md` for collection requirements and `project-scope.md` for the proposed content files and update workflow.
 
@@ -198,6 +198,13 @@ The client supplied track links for My Name (4E99PWSUTRKyPK97TZkuNF), Letter to 
 - Preserved the 16:9 frame, grid, typography, title and YouTube fallback link. Iframe still appears only after activation and now uses `autoplay=1` on `youtube-nocookie.com`.
 - `npm.cmd run build` and `npm.cmd run check:deployment` passed. Browser checks confirmed both requested maxres thumbnails loaded at 1280×720; the play control is centered, both requested videos produce the expected autoplay embed URLs on click/keyboard activation, and an additional card uses the hq fallback. Full browser-foundation checks pass at 320/390/768/1440/1920px.
 - Browser testing confirms embed creation but not actual playback rendering; the external player still depends on YouTube availability/network access.
+
+## Client-requested footer socials — 20 October 2026
+
+- Added the supplied Instagram and X URLs as compact icon-only footer links using Tabler brand icons and accessible labels; removed the footer Spotify/Apple Music links while preserving them above.
+- Matched the footer background and foreground to the existing featured-release section tokens. Icon glyphs are 20px inside 44px keyboard/touch targets with visible focus styling.
+- Updated the foundation browser checks to assert the exact destinations and labels, icon count/target size, absence of footer music links, and matching footer/featured backgrounds.
+- `npm.cmd run build` and `npm.cmd run check:deployment` passed under Node 24. `node scripts/check-foundation.mjs` passed at 320/390/768/1440/1920px. The social account ownership and live destinations remain unverified.
 
 ## Client-requested MP3 additions — 19 October 2026
 

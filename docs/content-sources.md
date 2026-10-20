@@ -6,7 +6,7 @@ Reviewed 18 October 2026, after Phase 4 and before Phase 5. This is content inte
 
 The attached client brief supplies SECKY's identity, hero headline/supporting text, short biography, two-paragraph full biography and two artist profile URLs. The full name is preserved as **Success Enwerem Chimezie KingsleY**, including the final capital Y. The full biography is integrated verbatim as client-provided copy. Award and FIFA-related statements have not been expanded or represented as independently verified facts.
 
-Still needed: confirmation of name capitalisation; Top Naija Music Awards year/category and supporting announcement; evidence for the precise assertion that the song appeared on FIFA's official Spotify and Apple Music pages. A streaming credit alone is not proof of endorsement, an official relationship, or control of the associated profile. No FIFA logo or additional partnership claim is used.
+Still needed: confirmation of name capitalisation; Top Naija Music Awards year/category and supporting announcement; evidence for the precise assertion that the song appeared on FIFA's official Spotify and Apple Music pages. Instagram and X URLs were supplied later and are listed below. A streaming credit alone is not proof of endorsement, an official relationship, or control of the associated profile. No FIFA logo or additional partnership claim is used.
 
 ## Supplied artist profiles
 
@@ -30,6 +30,15 @@ The initial catalogue integration added the four releases listed below. Dates, t
 Links retain the actual discovered US release URLs rather than inventing GB equivalents. Artist profiles are never used as release links. The existing chooser is used for Celebration's two verified platform destinations; the other three link directly to their release-specific Apple Music pages. No live playback was attempted and no sign-in was performed.
 
 The initial source review deferred other profile/index snapshot entries pending direct release-page confirmation. Infatuation and Lagos 2 London are now included based on the client's exact HyperFollow links and matching covers, with Spotify-confirmed metadata recorded below. Aboki Amapiano/Amapiano Aboki and Arusi/Arusi (Masquerade) remain outside the catalogue. The complete canonical catalogue and featured selection still need client review.
+
+## Client-supplied footer social links — 20 October 2026
+
+The client supplied the following destinations for compact icon-only footer links. They are included exactly as supplied; URL syntax is validated by the shared profile-link helper. Account ownership and live profile availability were not independently verified. The footer intentionally does not repeat Spotify or Apple Music, which remain in the hero and catalogue areas.
+
+| Profile | Supplied URL |
+| --- | --- |
+| Instagram | https://www.instagram.com/seckyworldwide?xtok=ZnBiOWYwaTc4MGZx&utm_source=qr |
+| X | https://x.com/seckyworldwide?s=11 |
 
 ## Client-requested MP3 additions — 19 October 2026
 

@@ -14,7 +14,7 @@ Updated: 19 October 2026, release-candidate review. SECKY's supplied identity, b
 | Missing | Brand direction | Existing brand colours and typography preferences, or agreement that the developer may propose them for approval. Include font licensing constraints. The proposed ivory/ink/rust palette and Georgia/Arial typography await approval. |
 | Missing | Featured release selection | Identify the release to lead the page and whether it is already released or forthcoming. |
 | Partially integrated | Release catalogue | Six releases with titles, dates, covers and release-specific links. The two newly added EPs have client-supplied covers and direct Spotify/Apple Music links. Canonical catalogue confirmation and final client review remain needed; see `content-sources.md`. |
-| Missing | Social profile URLs | Exact official profile destinations to include; explicitly confirm if none should appear. |
+| Integrated | Footer social profile URLs | Client-supplied Instagram and X URLs appear as icon-only links in the footer. Confirm account ownership and live destinations before launch. |
 | Integrated | Streaming profile URLs | Exact supplied Spotify and Apple Music GB URLs. Apple GB direct fetch was unavailable; identity corroborated via matching US artist ID. Kept separate from release links. |
 | Integrated | MP4 YouTube links | Four exact client-supplied YouTube links are in `src/content/videos.ts`; titles came from YouTube metadata. See `content-sources.md`. Playback availability remains untested. |
 | Automated | Video thumbnails | No separate assets were supplied; previews derive maxres/hq YouTube thumbnails from the verified video IDs. Confirm each thumbnail and video association during client review. |
@@ -71,7 +71,7 @@ Client confirmations before launch:
 - Supply links supporting the precise claim about appearing on FIFA's official Spotify and Apple Music pages. Release collaborator metadata does not independently establish official endorsement or account ownership. No ambassador/partner/performer/award claim has been added.
 - Choose the featured release; confirm the partial catalogue and resolve differing platform titles/types for other entries before adding them.
 - Artist photographs and all six release covers are integrated. Supply any required artist/photographer credit wording; existing stock photos remain excluded from the application.
-- Supply a public booking/management email, official social handles if any, copyright attribution and brand approval.
+- Confirm the supplied Instagram and X accounts and provide any additional official social handles, copyright attribution and brand approval.
 - Confirm live availability of the supplied Apple Music GB profile and cached/indexed release destinations. Final domain, canonical URL and sharing image remain pending. Review the derived S-dot favicon and see qa-report.md for launch requirements.
 
 Supply copy and release data in a document or spreadsheet with files clearly matched to the artist/release. Provide original assets rather than screenshots where possible. Record which items are approved, require edits, or are intentionally unavailable. The developer then transfers approved values into the structured files proposed in `project-scope.md`.

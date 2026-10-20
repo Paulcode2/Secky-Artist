@@ -77,12 +77,21 @@ try {
   assert.equal(await evaluate('document.querySelector(".booking-email").target'), '');
   assert.equal(await evaluate(`Array.from(document.querySelectorAll('a[href^="https://"]')).every(a => a.target === '_blank' && a.relList.contains('noopener') && a.relList.contains('noreferrer'))`), true);
   const suppliedProfiles = ['https://open.spotify.com/artist/2gyg88Hy443exTHje87bKk', 'https://music.apple.com/gb/artist/secky/1756161815'];
-  for (const section of ['.hero', '#music', 'footer']) {
+  for (const section of ['.hero', '#music']) {
     assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('${section} .profile-links a'), a => a.href)`), suppliedProfiles);
   }
+  assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('footer .footer-social-link'), a => a.href)`), [
+    'https://www.instagram.com/seckyworldwide?xtok=ZnBiOWYwaTc4MGZx&utm_source=qr',
+    'https://x.com/seckyworldwide?s=11',
+  ]);
+  assert.equal(await evaluate('document.querySelectorAll("footer .footer-social-link svg").length'), 2);
+  assert.deepEqual(await evaluate(`Array.from(document.querySelectorAll('footer .footer-social-link'), a => a.getAttribute('aria-label'))`), ['Visit Secky on Instagram', 'Visit Secky on X']);
+  assert.equal(await evaluate(`Array.from(document.querySelectorAll('footer .footer-social-link')).every(a => { const box = a.getBoundingClientRect(); return box.width >= 44 && box.height >= 44 && getComputedStyle(a).borderWidth === '0px'; })`), true);
+  assert.equal(await evaluate(`Array.from(document.querySelectorAll('footer a')).some(a => /spotify|music\\.apple\\.com/i.test(a.href))`), false);
+  assert.equal(await evaluate(`getComputedStyle(document.querySelector('footer')).backgroundColor === getComputedStyle(document.querySelector('.featured')).backgroundColor`), true);
   assert.equal(await evaluate('document.title'), 'SECKY | Official Website');
   assert.equal(await evaluate('document.querySelector("header .wordmark").textContent'), 'ArUsi’');
-  assert.equal(await evaluate('document.querySelector("footer .wordmark").textContent.trim()'), 'Seckyworldwide.com');
+  assert.equal(await evaluate('document.querySelector("footer .wordmark").textContent.trim()'), 'Secky.uk');
   assert.equal(await evaluate(`Array.from(document.querySelectorAll('.release')).every(card => {
     const links = Array.from(card.querySelectorAll('.release-listening-links a'));
     return links.length === 2 && links[0].getAttribute('aria-label').startsWith('Listen on Spotify:') && links[1].getAttribute('aria-label').startsWith('Listen on Apple Music:') && links.every(a => a.querySelector('.platform-logo'));

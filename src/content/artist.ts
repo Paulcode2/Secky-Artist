@@ -41,11 +41,12 @@ export interface ArtistContent {
   copyrightOwner?: string;
   socialProfiles: ProfileLink[];
   streamingProfiles: ProfileLink[];
+  footerSocialProfiles: ProfileLink[];
 }
 
 // Identity and biography are client-provided copy, not independently verified claims.
 // Preserve the supplied full-name spelling pending confirmation of the final capital Y.
-// Photographs and booking address supplied by the client; social handles remain absent.
+// Photographs, booking address, and footer social URLs were supplied by the client.
 export const artist: ArtistContent = {
   isDraft: false,
   stageName: 'SECKY',
@@ -82,6 +83,10 @@ export const artist: ArtistContent = {
   streamingProfiles: [
     { label: 'Spotify', url: 'https://open.spotify.com/artist/2gyg88Hy443exTHje87bKk' },
     { label: 'Apple Music', url: 'https://music.apple.com/gb/artist/secky/1756161815' },
+  ],
+  footerSocialProfiles: [
+    { label: 'Instagram', url: 'https://www.instagram.com/seckyworldwide?xtok=ZnBiOWYwaTc4MGZx&utm_source=qr' },
+    { label: 'X', url: 'https://x.com/seckyworldwide?s=11' },
   ],
 };
 

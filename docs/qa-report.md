@@ -13,7 +13,7 @@ Initial release-candidate QA completed 19 October 2026; current update recorded 
 | MP4 | Four client-supplied YouTube videos with metadata titles; 16:9 click-to-load previews, privacy-enhanced player and Watch on YouTube fallback. Playback/availability unverified. |
 | INFO | Supplied full two-paragraph biography and outdoor photograph. Full-name spelling retained. Award/FIFA claims remain client copy pending supporting evidence. |
 | Contact | Supplied booking email and streaming profiles; social links omitted. Email delivery remains untested. |
-| Footer | SECKY and supplied streaming profiles. Copyright owner and social destinations still need client confirmation. |
+| Footer | Secky.uk wordmark with compact Instagram/X icon-only links; Spotify/Apple Music links are omitted here. Footer color matches the featured section. Copyright owner remains pending. |
 
 The initial QA run introduced no new sections or players. The later client-approved update below adds the MP4 YouTube section; no autoplay, backend or account functionality was introduced. Sample artist copy is absent. Featured release selection, publication approval and other listed client confirmations remain outstanding.
 
@@ -38,7 +38,7 @@ The initial QA run introduced no new sections or players. The later client-appro
 | Reduced motion | Emulated preference makes scrolling auto; stylesheet disables transitions/animations. |
 | Listening | Smart/direct/multiple/unavailable/pre-save branches, future dates, feature exclusion, newest-first order, missing fields and broken artwork fixtures passed. |
 | Platform chooser | Native nonmodal details/summary, not a dialog. Enter/Tab/Escape, focus return and emulated touch passed; no focus trap required. |
-| Booking/social | Missing links omitted; isolated valid mailto and profile fixtures passed. No real email or social account exists to verify. Exact supplied streaming profile hrefs checked. |
+| Booking/social | Supplied Instagram/X URLs are linked as accessible icon-only footer actions; footer Spotify/Apple Music links are omitted. URL syntax and link attributes passed. Social ownership/live availability and email delivery were not independently verified. Exact streaming profile hrefs remain in the hero and catalogue. |
 | Runtime | Zero captured uncaught browser runtime exceptions in development and production. This is not a comprehensive capture of every browser log/network message. |
 | Visual review | Refreshed 390px and 1440px full-page screenshots in `docs/review/content-390.png` and `content-1440.png`; readable wrapping/spacing and visible faces without stretching. |
 
